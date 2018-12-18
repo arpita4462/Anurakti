@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools" package="com.gmediasolutions.anurakti">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- <uses-permission android:name="android.permission.READ_LOGS" /> -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <application
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme"
+            android:usesCleartextTraffic="true"
+            android:name="android.support.multidex.MultiDexApplication"
+            tools:ignore="GoogleAppIndexingWarning">
+
+        <activity
+                android:name=".SplashActivity"
+                android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
+                android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".base.LoginActivity"/>
+        <activity android:name=".base.MainActivity"/>
+        <activity android:name=".base.RegisterActivity"/>
+        <activity android:name=".BaseActivity"/>
+        <activity android:name=".socialmedia.UserSocialActivity"
+                  android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".socialmedia.FriendsSocialActivity"
+                  android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".socialmedia.AddPostActivity"/>
+        <activity android:name=".socialmedia.TimelineSingleImageActivity"/>
+        <activity android:name=".b2b.B2BActivity"/>
+        <activity android:name=".b2b.B2BRegistrationActivity"/>
+        <activity android:name=".b2b.SpecificB2BActivity"/>
+        <activity android:name=".careerandtalent.CandTRegistrationActivity"/>
+        <activity android:name=".careerandtalent.CandTActivity"/>
+        <activity android:name=".careerandtalent.SpecificCandTActivity"/>
+        <activity android:name=".newsevent.NewsEventActivity"/>
+        <activity android:name=".newsevent.NewsRegistrationActivity"/>
+        <activity android:name=".newsevent.SpecificNewsEventActivity"/>
+        <activity android:name=".menuoptions.ContactUsActivity"/>
+        <activity android:name=".menuoptions.AboutUsActivity"/>
+        <activity android:name=".menuoptions.TermsAndConditionActivity"/>
+        <activity android:name=".vendor.VendorsActivity"/>
+        <activity android:name=".blogger.BloggerActivity"/>
+        <activity android:name=".blogger.SpecificBloggerActivity"/>
+        <activity android:name=".blogger.AddBlogActivity"/>
+        <activity android:name=".helpsupport.HelpSupportActivity"/>
+        <activity android:name=".helpsupport.FeeedbackActivity"/>
+    </application>
+
+</manifest>

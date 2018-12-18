@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:background="@color/bg_color"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:focusableInTouchMode="true">
+
+    <include android:id="@+id/toolbar"
+             layout="@layout/custom_toolbar"/>
+
+    <Button
+            android:id="@+id/blog_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/border_dialogbg"
+            android:layout_below="@id/toolbar"
+            android:text="@string/blog_dd"
+            android:textAlignment="center"
+            android:textColor="@color/black"/>
+
+    <android.support.v7.widget.RecyclerView
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:id="@+id/blog_recycleView"
+            android:layout_below="@+id/blog_add"
+
+            android:layout_margin="5dp">
+    </android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

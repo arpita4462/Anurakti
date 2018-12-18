@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:background="@color/bg_color"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:focusableInTouchMode="true">
+
+    <include android:id="@+id/toolbar"
+             layout="@layout/custom_toolbar"/>
+
+
+    <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/toolbar"
+            android:fillViewport="true">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:descendantFocusability="afterDescendants"
+                android:orientation="vertical">
+            <Button
+                    android:id="@+id/news_reg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/border_dialogbg"
+                    android:text="@string/post_your_news"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"/>
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:background="@drawable/border_dialogbg">
+
+                <Spinner
+                        android:id="@+id/spinner_ne"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:theme="@style/ThemeOverlay.AppCompat.Light"
+                        android:spinnerMode="dropdown"/>
+
+            </RelativeLayout>
+            <SearchView
+                    android:id="@+id/serach_view_ne"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:queryHint="@string/search_news"
+                    android:background="@drawable/border_dialogbg"
+                    android:layout_margin="5dp"
+                    android:queryBackground="@android:color/transparent"
+                    android:iconifiedByDefault="false">
+                <requestFocus/>
+            </SearchView>
+
+            <android.support.v7.widget.RecyclerView
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:id="@+id/ne_recycleView"
+                    android:layout_margin="5dp">
+            </android.support.v7.widget.RecyclerView>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+</RelativeLayout>

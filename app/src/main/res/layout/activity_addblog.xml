@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             android:layout_width="match_parent"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             android:background="@color/bg_color"
+                                             android:layout_height="match_parent">
+
+    <RelativeLayout
+            android:id="@+id/blog_rl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/select_image"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:layout_centerInParent="true"
+                android:drawablePadding="15dp"
+                android:padding="5dp"
+                android:drawableLeft="@drawable/baseline_add_a_photo_black_24"/>
+        <ImageView
+                android:id="@+id/blog_iv"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_margin="10dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp" />
+    </RelativeLayout>
+
+        <Button
+                android:id="@+id/blog_image_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/border_dialogbg"
+                android:text="@string/select_image"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:drawableLeft="@drawable/baseline_add_a_photo_black_24"
+                app:layout_constraintBottom_toTopOf="@id/et_blog"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/blog_rl"
+                app:layout_constraintVertical_bias="0.486" />
+        <EditText
+                android:id="@+id/et_blog"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-condensed"
+                android:padding="10dp"
+                android:hint="@string/write_post_here"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="normal"
+                android:background="@drawable/border_dialogbg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/blog_image_btn" />
+
+        <Button
+                android:id="@+id/blog_submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/border_dialogbg"
+                android:text="@string/submit"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_blog"
+                app:layout_constraintVertical_bias="0.486" />
+
+</android.support.constraint.ConstraintLayout>

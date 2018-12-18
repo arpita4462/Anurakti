@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:background="@color/bg_color"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:focusableInTouchMode="true">
+
+    <include android:id="@+id/toolbar"
+             layout="@layout/custom_toolbar"/>
+
+    <ScrollView
+            android:id="@+id/scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:layout_below="@id/toolbar">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="2dp">
+
+            <TextView
+                android:id="@+id/tv_regs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                app:fontFamily="sans-serif-condensed"
+                android:padding="5dp"
+                android:text="@string/ad_details_forms"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="normal" />
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:layout_gravity="center"
+                android:id="@+id/candt_displayivs"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+                    <Button
+                        android:id="@+id/candt_uploadimgs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/edit_image"
+                        android:paddingRight="10dp"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:textAlignment="center"
+                        android:background="@drawable/border_dialogbg"
+                        android:paddingLeft="10dp"
+                        android:layout_margin="2dp"
+                        android:visibility="invisible"
+                        android:drawableLeft="@drawable/ic_menu_camera"
+                        android:textColor="@color/black" />
+
+                    <Button
+                        android:id="@+id/candt_edits"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/edit"
+                        android:paddingRight="10dp"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:textAlignment="center"
+                        android:background="@drawable/border_dialogbg"
+                        android:paddingLeft="10dp"
+                        android:layout_margin="2dp"
+                        android:drawableLeft="@drawable/baseline_edit_24"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:background="@drawable/border_dialogbg">
+
+                    <Spinner
+                        android:id="@+id/spinner_candts"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:theme="@style/ThemeOverlay.AppCompat.Light"
+                        android:spinnerMode="dropdown" />
+
+                </RelativeLayout>
+
+
+                <EditText
+                    android:id="@+id/cnadt_fullnames"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/border_dialogbg"
+                    android:hint="@string/full_name"
+                    android:textColorHint="@color/hintcolor"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/cnadt_fnames"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:textColorHint="@color/hintcolor"
+                    android:background="@drawable/border_dialogbg"
+                    android:hint="Father Name"
+                    android:inputType="text"
+                    android:maxLength="30"
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/cnadt_emailids"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:textColorHint="@color/hintcolor"
+                    android:background="@drawable/border_dialogbg"
+                    android:hint="@string/email_id"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/cnadt_contactss"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:textColorHint="@color/hintcolor"
+                    android:background="@drawable/border_dialogbg"
+                    android:hint="@string/mobile_number"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/black" />
+
+
+                <EditText
+                    android:id="@+id/candt_industytypes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/hintcolor"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/border_dialogbg"
+                    android:hint="@string/industry_type"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/candt_contactpers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/hintcolor"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/border_dialogbg"
+                    android:hint="@string/contact_person"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/candt_addresss"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/hintcolor"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/border_dialogbg"
+                    android:hint="@string/address_details"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/black" />
+                <EditText
+                    android:id="@+id/candt_applyingfors"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/hintcolor"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/border_dialogbg"
+                    android:hint="@string/applying_for"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/black" />
+                <EditText
+                    android:id="@+id/candt_hiringfors"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/hintcolor"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/border_dialogbg"
+                    android:hint="@string/hiring_for"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/candt_keywordss"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:textColorHint="@color/hintcolor"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/border_dialogbg"
+                    android:hint="@string/key_skills"
+                    android:layout_gravity="start|top"
+                    android:gravity="start|top"
+                    android:inputType="textMultiLine"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/candt_jobexps"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:textColorHint="@color/hintcolor"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/border_dialogbg"
+                    android:hint="@string/job_experience"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/black" />
+                <EditText
+                    android:id="@+id/candt_precomps"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:textColorHint="@color/hintcolor"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/border_dialogbg"
+                    android:hint="@string/previous_company"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+<!--
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="4"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:id="@+id/jh_displayiv1"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:id="@+id/jh_displayiv2"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:id="@+id/jh_displayiv3"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:id="@+id/jh_displayiv4"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:id="@+id/jh_displayiv5"/>
+
+            </LinearLayout>
+-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:id="@+id/candt_filenames"/>
+                <Button
+                    android:id="@+id/candt_uploadfiles"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/upload_file"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:background="@drawable/border_dialogbg"
+                    android:paddingLeft="5dp"
+                    android:layout_margin="2dp"
+                    android:layout_gravity="center"
+                    android:drawableLeft="@drawable/ic_menu_camera"
+                    android:textColor="@color/black"
+                    />
+
+            </LinearLayout>
+                <Button
+                    android:id="@+id/candt_submits"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:background="@drawable/border_dialogbg"
+                    android:text="@string/submit"
+                    android:textAlignment="center"
+                    android:textColor="@color/black" />
+            <Button
+                android:id="@+id/candt_delete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:background="@drawable/border_dialogbg"
+                android:text="@string/delete"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:layout_marginBottom="10dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

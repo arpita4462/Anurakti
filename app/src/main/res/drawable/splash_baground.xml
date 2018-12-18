@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--<item android:drawable="@drawable/hassan1_jzruiy2" />-->
+    <item >
+
+        <bitmap
+                android:gravity="center_vertical|center_horizontal"
+                android:src="@drawable/baseline_add_a_photo_black_18" />
+    </item>
+
+
+
+</layer-list>

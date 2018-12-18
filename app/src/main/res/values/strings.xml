@@ -1,0 +1,280 @@
+<resources>
+    <string name="app_name">MyAnurakti</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+
+    <!--registraion and login-->
+    <string name="login">SIGN IN</string>
+    <string name="forgot">Forgot password ?</string>
+    <string name="register_now">Don\'t have an account?</string>
+    <string name="terms">By Sign up, you are agree with <u>Terms and Conditions.</u> </string>
+
+    <!--<string name="already_mem"> </string>-->
+    <string name="login_now">Already have an account?</string>
+    <string name="hint_name">Enter Name</string>
+    <string name="hint_email">Enter Email</string>
+    <string name="hint_pwd">Enter Password</string>
+    <string name="hint_repwd">Re-enter Password</string>
+    <string name="hint_mob">Mobile Number</string>
+    <string name="register">Register</string>
+    <string name="err_msg_email">Enter Correct EmailId</string>
+    <string name="err_msg_name">Enter Your Name</string>
+<!--forget password-->
+    <string name="forgot_password_msg">We just need your registered Email Id to sent you password reset instructions.</string>
+    <string name="verify_email_id">We just need your registered Email Id to sent Email verification link.</string>
+
+    <!--Menu item texts -->
+    <string name="action_search">Search</string>
+    <string name="action_cart">Cart</string>
+    <string name="action_notifications">Notifications</string>
+
+    <string name="item_0">Home</string>
+    <string name="item_1">Offers</string>
+    <string name="item_2">Electronics</string>
+    <string name="item_3">Lifestyle</string>
+    <string name="item_4">Home Appliances</string>
+    <string name="item_5">Books \u0026 More</string>
+    <string name="item_6">More</string>
+
+    <string name="my_profile">My Profile</string>
+    <string name="my_rewards">My Rewards</string>
+    <string name="my_orders">My Orders</string>
+    <string name="my_cart">My Cart</string>
+    <string name="my_wishlist">My Wishlist</string>
+    <string name="my_account">My Account</string>
+
+    <string name="help_support">Help \u0026 Support</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="terms_conditions">Terms \u0026 Conditions</string>
+    <string name="help_center">Help Center</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="log_out">Log out</string>
+
+    <string name="search_hint">Search for Products, Brands and More</string>
+    <string name="update_details">Update Details</string>
+
+    <!--Internet connection-->
+    <string name="connect_internet">Connected to Internet</string>
+    <string name="sorry_nointernet">Sorry! Not connected to internet</string>
+    <string name="base_url">http://daivajnyabrahmin.com/</string>
+    <string name="api_base_url">"http://127.0.0.1:8080/rest/users/"</string>
+    <string name="more">More</string>
+
+    <!--Contact Us-->
+    <string name="call_us_at">Call us at :</string>
+    <string name="contact_num">+91 9845184444</string>
+    <string name="email_us_at">Email us at :</string>
+    <string name="contact_email">info@gmediasolutions.in</string>
+
+    <!--bottom navigation menu items-->
+    <string name="profile">Profile</string>
+    <string name="photos">Photos</string>
+    <string name="friends">Friends</string>
+    <string name="notification">Notifications</string>
+    <string name="timeline">Timeline</string>
+
+
+    <string name="upcoming_news_and_events">Upcoming News and events</string>
+
+    <string name="label_first_name">First Name:</string>
+    <string name="label_last_name">Last Name:</string>
+    <string name="post_author_image_transition_name" translatable="false">post_author_image_transition_name</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="birthday">Birthday:</string>
+    <string name="gender">Gender:</string>
+    <string name="email_id">Email Id:</string>
+    <string name="mobile_number">Mobile Number:</string>
+    <string name="working_in">Working In/As:</string>
+    <string name="working_in_matri">Working In</string>
+    <string name="high_school">Qualification:</string>
+    <string name="graduation">Occupation:</string>
+    <string name="current_city">Current city:</string>
+    <string name="permanent_city">Permanent city:</string>
+    <string name="save_update">Save Update</string>
+
+
+    <string name="reset_password">Reset Password</string>
+
+    <string name="new_updates">NEW</string>
+
+    <string name="post_your_details">Post Your Details</string>
+    <string name="post_your_news">Post Your News</string>
+
+    <string name="search_event">Search Events</string>
+
+    <string name="creers_and_talents">Careers &amp; Talents</string>
+    <string name="b2b">B2B</string>
+    <string name="news_and_events">News &amp; Events</string>
+
+    <string name="view_profile">View Profile</string>
+
+    <string name="register_here">Register Here</string>
+
+    <string name="inbox_msg">Message</string>
+    <string name="search_news">Search News</string>
+
+    <string name="search_frnd">Search Friends</string>
+    <string name="add_friend">Add Friend</string>
+    <string name="post_somthing_here">Post Something Here...</string>
+    <string name="comments">Comments</string>
+    <string name="add_comment">Add Comment....</string>
+
+    <string name="address_details">Address Details</string>
+
+    <string name="sign_up">Sign Up</string>
+    <string name="enter_first_name">Enter First Name</string>
+    <string name="enter_last_name">Enter Last Name</string>
+    <string name="confirm_password">Confirm Password</string>
+
+    <string name="import_images">Images</string>
+
+    <string name="product_name">Name</string>
+    <string name="product_description">Description</string>
+
+    <string name="delete">Delete</string>
+
+    <string name="search_company">Search Company</string>
+    <string name="write_post_here">Write Post here....</string>
+
+    <string name="news_forms">News Details</string>
+
+    <string name="event_name">Event Name</string>
+    <string name="event_details">Event Details</string>
+    <string name="hub_events_details">Hub Events Details</string>
+    <string name="event_na_me">Event Na me</string>
+    <string name="event_date_and_time">Event Date and Time</string>
+    <string name="events_details">Events Details</string>
+
+    <string name="search_property">Search Property</string>
+    <string name="search_product">Search Product</string>
+
+
+    <string name="search_job">Search JobSeeker</string>
+    <string name="registration">Registration</string>
+    <string name="ad_details_form">Add Details Form</string>
+    <string name="ad_details_forms">Form Details</string>
+    <string name="full_name">Full Name</string>
+    <string name="industry_type">Industry Type</string>
+    <string name="contact_person">Contact Person</string>
+    <string name="applying_for">Applying For</string>
+    <string name="hiring_for">Hiring For</string>
+    <string name="key_skills">Key Skills</string>
+    <string name="job_experience">Job Experience</string>
+    <string name="previous_company">Previous Company</string>
+    <string name="upload_file">Upload File</string>
+    <string name="upload_image">Upload Image</string>
+
+    <string name="select_image">select image</string>
+    <string name="submit">Submit</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
+    <string name="cal_show">Show Calender</string>
+    <string name="edit_image">Edit Image</string>
+    <string name="edit">Edit</string>
+    <string name="temple_name">Temple Name</string>
+
+    <string name="add_an_events">Add An Events</string>
+    <string name="list_of_events">List Of Events</string>
+    <string name="click_to_comment">Click To Comment</string>
+    <string name="search_vendor">Search Vendor</string>
+
+    <string name="ne_heading">News Heading</string>
+
+    <string name="feedback">Feedback</string>
+    <string name="content1">Add Description</string>
+
+
+    <string name="terms_and_condition">Terms &amp; Condition</string>
+
+    <string name="signout">SignOut</string>
+
+    <string name="add_frnd">Add Friend</string>
+    <string name="cancel_request">Delete Friend</string>
+    <string name="terms_text">By downloading or using the app, these terms will automatically apply to you - you should make sure that you read them carefully before using the app. You should adhere the terms and conditions of Daivajnya Brahmin mobile app. This application is for Daivajnya Brahmin solely and adhere to its community. please read the terms and conditions carefully before accepting.</string>
+    <string name="accept">Accept</string>
+    <string name="decline">Decline</string>
+
+    <string name="no_one_liked">No One Liked</string>
+    <string name="share_with">Share With...</string>
+    <string name="no_comment">No Comments Yet</string>
+    <string name="placet">Place...</string>
+    <string name="degt">Designation....</string>
+    <string name="edut">Education....</string>
+    <string name="no_post">No post to display</string>
+    <string name="no_frnd">No Friends</string>
+    <string name="frnd_list">Friends List</string>
+    <string name="no_image">No image to display</string>
+    <string name="share_with_my_timeline">Share with my timeline</string>
+    <string name="search_matri_heading">Search Profile </string>
+    <string name="lbl_contact">Ask for Contact</string>
+    <string name="like_name">People liked</string>
+    <string name="send_msg">Send Message</string>
+    <string name="delete_msg">Do you want to Delete ?</string>
+
+    <string name="ErrorField">Please Fill This Field</string>
+    <string name="ErrorFieldLast">Last Name not valid</string>
+    <string name="error_password">Password should be greater then 5 character</string>
+    <string name="invalid_entry">Invalid Data</string>
+
+    <string name="logo">logo</string>
+    <string name="social_media">Social</string>
+    <string name="blog">Blogger</string>
+    <string name="vendor">Vendors</string>
+    <string name="done">Done</string>
+    <string name="post_your_ad">Post your Ad</string>
+    <string name="quantity">Quantity</string>
+    <string name="area_desc">Area Description</string>
+    <string name="father_name">Father Name</string>
+    <string name="about_us">About Us</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="j_a_w_a_n_s">J A W A N S</string>
+    <string name="a_n_u_r_a_k_t_i">M y   A n u r a k t i</string>
+    <string name="home">Home</string>
+    <string name="suggetion">Suggetions</string>
+    <string name="assistance">Assistance</string>
+    <string name="complients">complaints</string>
+    <string name="supports">Supports</string>
+    <string name="others">Others</string>
+    <string name="code">Coupon Code</string>
+    <string name="transition">Transition</string>
+    <string name="blogger_headline">BLOGGER HEADLINE</string>
+    <string name="transiton_text">transitionText</string>
+    <string name="transiton_news_image">transitionText</string>
+    <string name="transiton_card">card_view</string>
+    <string name="blog_dd">Add your blog</string>
+
+
+    <string-array name="spinner_gender">
+        <item>Select Gender</item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+    <string-array name="b2b_arrays">
+        <item>Select Category</item>
+        <item>product</item>
+        <item>property</item>
+    </string-array>
+
+    <string-array name="candt_arrays">
+        <item>Select Profile For</item>
+        <item>student</item>
+        <item>company</item>
+    </string-array>
+
+    <string-array name="ne_arrays">
+        <item>Select Category</item>
+        <item>Sports</item>
+        <item>Entertainment</item>
+        <item>Death</item>
+        <item>Marriage</item>
+        <item>New Offer</item>
+    </string-array>
+</resources>

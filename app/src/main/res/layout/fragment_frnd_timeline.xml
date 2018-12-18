@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/swipeContainer"
+        android:background="@color/bg_color"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusableInTouchMode="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp">
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <RelativeLayout
+                        android:id="@+id/profileInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                    <ImageView
+                            android:id="@+id/coverPic"
+                            android:layout_width="match_parent"
+                            android:layout_height="180dp"
+                            android:scaleType="fitXY"
+                            android:adjustViewBounds="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginBottom="50dp" />
+
+
+                    <RelativeLayout
+                            android:id="@+id/imageContainer"
+                            android:layout_width="@dimen/profile_screen_avatar_size"
+                            android:layout_height="@dimen/profile_screen_avatar_size"
+                            android:paddingLeft="@dimen/intrinsic_padding"
+                            android:paddingRight="@dimen/intrinsic_padding"
+                            android:paddingTop="@dimen/intrinsic_padding"
+                            android:layout_alignParentBottom="true">
+
+                        <com.wang.avi.AVLoadingIndicatorView
+                                android:id="@+id/progressBart"
+                                style="@style/AVLoadingIndicatorView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="15dp"
+                                android:layout_gravity="center"
+                                app:indicatorColor="@color/colorPrimaryDark"
+                                app:indicatorName="BallClipRotatePulseIndicator" />
+
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/profile_imageView"
+                                android:layout_width="150dp"
+                                android:layout_height="150dp"
+                                app:civ_border_color="@color/colorPrimaryDark"
+                                app:civ_border_width="1dp"
+                                android:src="@drawable/baseline_person_white_18"/>
+
+
+
+                    </RelativeLayout>
+                    <LinearLayout
+                            android:id="@+id/tlay_frnd"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_below="@id/coverPic"
+                            android:layout_marginTop="-50dp"
+                            android:layout_marginLeft="30dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_toRightOf="@id/imageContainer"
+                            android:orientation="vertical" >
+                        <TextView
+                                android:id="@+id/tv_addfrnd"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="1dp"
+                                android:text="@string/add_friend"
+                                android:background="@drawable/border_dialogbg"
+                                android:textColor="@color/black" />
+                        <TextView
+                                android:id="@+id/tv_cancelfrnd"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:layout_marginRight="1dp"
+                                android:padding="5dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:background="@drawable/border_dialogbg"
+                                android:text="@string/cancel_request"
+                                android:textColor="@color/black" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                    android:id="@+id/layout_descrp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:orientation="vertical">
+
+                <TextView
+                        android:id="@+id/tv_profilename"
+                        android:layout_width="wrap_content"
+                        android:layout_margin="8dp"
+                        android:textStyle="bold"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black" />
+
+                <LinearLayout
+                        android:id="@+id/tv_profileplacel"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                    <ImageView
+                            android:id="@+id/iv_profileplace"
+                            android:layout_width="@dimen/timeline_icon"
+                            android:layout_height="@dimen/timeline_icon"
+                            android:layout_gravity="center"
+                            android:layout_margin="2dp"
+                            android:background="@drawable/person_black" />
+
+                    <TextView
+                            android:id="@+id/tv_profileplace"
+                            android:layout_width="wrap_content"
+                            android:layout_margin="8dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textColor="@color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                        android:id="@+id/des_tvl"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                    <ImageView
+                            android:id="@+id/des_tvim"
+                            android:layout_width="@dimen/timeline_icon"
+                            android:layout_height="@dimen/timeline_icon"
+                            android:layout_gravity="center"
+                            android:layout_margin="2dp"
+                            android:background="@drawable/baseline_school_24" />
+
+                    <TextView
+                            android:id="@+id/des_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:layout_gravity="center"
+                            android:textColor="@color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                        android:id="@+id/edu_tvl"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                    <ImageView
+                            android:id="@+id/edu_tvim"
+                            android:layout_width="@dimen/timeline_icon"
+                            android:layout_height="@dimen/timeline_icon"
+                            android:layout_gravity="center"
+                            android:layout_margin="2dp"
+                            android:background="@drawable/baseline_place_black_24" />
+
+                    <TextView
+                            android:id="@+id/edu_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="8dp"
+                            android:textColor="@color/black" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elevation="50dp"
+                    app:cardCornerRadius="1dp"
+                    android:layout_margin="5dp"
+                    android:focusableInTouchMode="true">
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_margin="5dp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/user_picpost"
+                            android:layout_width="45dp"
+                            android:layout_centerVertical="true"
+                            android:layout_height="45dp"
+                            app:civ_border_color="@color/colorPrimaryDark"
+                            app:civ_border_width="1dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:src="@drawable/baseline_person_white_18"/>
+
+                    <TextView
+                            android:id="@+id/post_timel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/post_somthing_here"
+                            android:padding="15dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:textStyle="normal"
+                            android:background="@drawable/round_corner_bg"
+                            android:textColor="@color/text_color"
+                            android:layout_toEndOf="@+id/user_picpost"
+                            android:layout_toRightOf="@+id/user_picpost"
+                            android:layout_toStartOf="@+id/photo_logo"
+                            android:layout_toLeftOf="@+id/photo_logo"/>
+
+
+                    <LinearLayout android:id="@+id/photo_logo"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:gravity="center"
+                                  android:layout_centerVertical="true"
+                                  android:layout_alignParentRight="true"
+                                  android:orientation="vertical">
+                        <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/gallery_timeline"/>
+                        <TextView android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:text="Photos"
+                                  android:textColor="@color/black"/>
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+
+
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/timeline_frame">
+                <com.wang.avi.AVLoadingIndicatorView
+                        android:id="@+id/timeline_ProgressBar"
+                        style="@style/AVLoadingIndicatorView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="15dp"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        app:indicatorColor="@color/colorPrimaryDark"
+                        app:indicatorName="BallClipRotatePulseIndicator" />
+
+                <TextView
+                        android:id="@+id/post_error_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:visibility="invisible" />
+
+                <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="@dimen/intrinsic_padding" />
+
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</android.support.v4.widget.SwipeRefreshLayout>

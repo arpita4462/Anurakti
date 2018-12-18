@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_selects"
+    android:layout_width="300dp"
+              android:background="@color/bg_color"
+              android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:padding="15dp">
+
+        <TextView
+            android:id="@+id/tv_likepeople"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:padding="5dp"
+            android:text="@string/like_name"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="12sp" />
+    <TextView
+        android:id="@+id/share_i"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="@string/share_with_my_timeline"
+        android:textColor="@color/black"
+        android:background="@drawable/border_dialogbg"
+        android:textSize="12sp" />
+
+       <android.support.v7.widget.RecyclerView
+           android:id="@+id/list_like"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"/>
+
+</LinearLayout>
+

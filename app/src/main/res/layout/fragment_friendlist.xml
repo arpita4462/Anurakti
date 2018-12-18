@@ -1,0 +1,37 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+              android:background="@color/bg_color"
+              android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:focusableInTouchMode="true">
+    <LinearLayout
+        android:id="@+id/search_layout_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rltop">
+        <SearchView
+            android:id="@+id/serach_frndlist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:queryHint="@string/search_frnd"
+            android:background="@drawable/border_dialogbg"
+            android:layout_margin="5dp"
+            android:queryBackground="@android:color/transparent"
+            android:iconifiedByDefault="false" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/allfrndlist_recycleView"
+            android:layout_margin="5dp">
+            <!--app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+</LinearLayout>
