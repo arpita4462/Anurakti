@@ -22,22 +22,23 @@
                 android:layout_height="0dp"
                 android:descendantFocusability="afterDescendants"
                 android:orientation="vertical">
+<!--
             <Button
                     android:id="@+id/news_reg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+
                     android:background="@drawable/border_dialogbg"
                     android:text="@string/post_your_news"
                     android:textAlignment="center"
                     android:textColor="@color/black"/>
+-->
 
+<!--
             <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_margin="5dp"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
                     android:background="@drawable/border_dialogbg">
@@ -50,6 +51,8 @@
                         android:spinnerMode="dropdown"/>
 
             </RelativeLayout>
+-->
+<!--
             <SearchView
                     android:id="@+id/serach_view_ne"
                     android:layout_width="match_parent"
@@ -61,14 +64,27 @@
                     android:iconifiedByDefault="false">
                 <requestFocus/>
             </SearchView>
+-->
 
-            <android.support.v7.widget.RecyclerView
-                    android:layout_height="match_parent"
+            <FrameLayout
+                    android:layout_below="@+id/blog_add"
                     android:layout_width="match_parent"
-                    android:id="@+id/ne_recycleView"
-                    android:layout_margin="5dp">
-            </android.support.v7.widget.RecyclerView>
+                    android:layout_height="match_parent">
+                <android.support.v7.widget.RecyclerView
+                        android:id="@+id/ne_recycleView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clipToPadding="false"
+                        android:paddingBottom="@dimen/activity_margin_content"
+                        android:paddingTop="@dimen/activity_margin_content"/>
 
+                <ProgressBar
+                        android:id="@+id/main_progress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"/>
+
+            </FrameLayout>
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>

@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
 <android.support.constraint.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -23,7 +28,8 @@
                 android:layout_centerInParent="true"
                 android:drawablePadding="15dp"
                 android:padding="5dp"
-        android:drawableLeft="@drawable/baseline_add_a_photo_black_24"/>
+                android:drawableLeft="@drawable/baseline_add_a_photo_black_24"
+                android:drawableStart="@drawable/baseline_add_a_photo_black_24"/>
         <ImageView
                 android:id="@+id/post_iv"
                 android:layout_width="match_parent"
@@ -33,10 +39,33 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp" />
+                android:layout_marginTop="8dp"
+                android:contentDescription="@string/select_image"/>
 
     </RelativeLayout>
 
+    <EditText
+            android:id="@+id/et_postTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-condensed"
+            android:padding="10dp"
+            android:hint="@string/post_title"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            android:background="@drawable/border_dialogbg"
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@id/post_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/post_rl"
+            android:importantForAutofill="no"/>
     <Button
             android:id="@+id/post_image"
             android:layout_width="match_parent"
@@ -56,12 +85,12 @@
             android:drawableLeft="@drawable/baseline_add_a_photo_black_24"
             app:layout_constraintBottom_toTopOf="@id/et_post"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/post_rl"
-            app:layout_constraintVertical_bias="0.486" />
+            app:layout_constraintTop_toBottomOf="@+id/et_postTitle"
+            android:drawableStart="@drawable/baseline_add_a_photo_black_24"/>
     <EditText
             android:id="@+id/et_post"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
@@ -73,22 +102,25 @@
             android:hint="@string/write_post_here"
             android:textColor="@color/black"
             android:textSize="15sp"
+            android:gravity="start"
             android:textStyle="normal"
             android:background="@drawable/border_dialogbg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/post_image" />
+            app:layout_constraintTop_toBottomOf="@+id/post_image"
+            android:inputType="textMultiLine"
+            android:importantForAutofill="no"/>
 
     <Button
             android:id="@+id/post_submit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
-            android:layout_marginBottom="0dp"
+            android:layout_marginBottom="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/border_dialogbg"
             android:text="@string/submit"
             android:textAlignment="center"
@@ -99,3 +131,4 @@
             app:layout_constraintVertical_bias="0.486" />
 
 </android.support.constraint.ConstraintLayout>
+</ScrollView>

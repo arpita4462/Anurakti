@@ -1,3 +1,4 @@
+/*
 package com.gmediasolutions.anurakti.newsevent
 
 import android.content.Intent
@@ -36,25 +37,23 @@ class NewsEventActivity : BaseActivity(), SearchView.OnQueryTextListener, NEFilt
 
     var listState: Parcelable? = null
     var searchNews: SearchView? = null
-    var spinner_news: Spinner? = null
+//    var spinner_news: Spinner? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news_event)
 
         searchNews = findViewById(R.id.serach_view_ne) as SearchView
-        spinner_news = findViewById(R.id.spinner_ne) as Spinner
+//        spinner_news = findViewById(R.id.spinner_ne) as Spinner
 
         setupToolbar()
         setupRecycleView()
-        setupSpinner()
+//        setupSpinner()
 
-        news_reg.setOnClickListener {
-            startActivity(Intent(this@NewsEventActivity, NewsRegistrationActivity::class.java))
-
-        }
     }
 
+*/
+/*
     private fun setupSpinner() {
         val adpter_ne = ArrayAdapter.createFromResource(this, R.array.b2b_arrays, android.R.layout.simple_spinner_item)
 
@@ -90,6 +89,8 @@ class NewsEventActivity : BaseActivity(), SearchView.OnQueryTextListener, NEFilt
             }
         }
     }
+*//*
+
 
     private fun setupRecycleView() {
         newsList = ArrayList()
@@ -191,7 +192,7 @@ class NewsEventActivity : BaseActivity(), SearchView.OnQueryTextListener, NEFilt
         super.onSaveInstanceState(outState)
         outState!!.putString("KeyUserId", user_id)
         outState.putString("KeyUserToken", user_token)
-        outState.putInt("KeyState", spinner_news!!.selectedItemPosition)
+//        outState.putInt("KeyState", spinner_news!!.selectedItemPosition)
         outState.putString("KeySearch", searchNews!!.query.toString())
         outState.putParcelable("LIST_STATE_KEY ", listState)
     }
@@ -200,7 +201,7 @@ class NewsEventActivity : BaseActivity(), SearchView.OnQueryTextListener, NEFilt
         super.onRestoreInstanceState(savedInstanceState)
         user_id = savedInstanceState!!.getString("KeyUserId")
         user_token = savedInstanceState.getString("KeyUserToken")
-        spinner_news!!.setSelection(savedInstanceState.getInt("KeyState", 0))
+//        spinner_news!!.setSelection(savedInstanceState.getInt("KeyState", 0))
         searchNews!!.setQuery(savedInstanceState.getString("KeySearch"), true)
         listState = savedInstanceState.getParcelable("LIST_STATE_KEY")
     }
@@ -209,4 +210,4 @@ class NewsEventActivity : BaseActivity(), SearchView.OnQueryTextListener, NEFilt
         super.onBackPressed()
         startActivity(Intent(this@NewsEventActivity, MainActivity::class.java))
     }
-}
+}*/

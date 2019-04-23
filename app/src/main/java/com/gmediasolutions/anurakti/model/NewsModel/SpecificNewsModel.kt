@@ -1,3 +1,5 @@
 package com.gmediasolutions.anurakti.model.NewsModel
 
-data class SpecificNewsModel(val data:List<SpecificNewsModelData>)
+data class SpecificNewsModel(val reasonCode:Int,
+                             val reasonText:String,
+                             val data:SpecificNewsModelData)

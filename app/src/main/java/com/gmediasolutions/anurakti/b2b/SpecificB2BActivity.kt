@@ -22,6 +22,7 @@ import com.gmediasolutions.anurakti.base.MainActivity
 import com.gmediasolutions.anurakti.R
 import com.gmediasolutions.anurakti.base.LoginActivity
 import com.gmediasolutions.anurakti.model.ApiReturn
+import com.gmediasolutions.anurakti.model.B2BModel.B2BRequest
 import com.gmediasolutions.anurakti.model.B2BModel.SpecificB2BModel
 import kotlinx.android.synthetic.main.activity_specific_b2b.*
 import kotlinx.android.synthetic.main.custom_toolbar.*
@@ -109,8 +110,8 @@ class SpecificB2BActivity : BaseActivity() {
                         val byte = bao.toByteArray()
                         base64img = Base64.encodeToString(byte, Base64.NO_WRAP)
 
-//                        val saveb2bdata = B2BRequest(user_id!!, b2bProductName!!, b2bName!!, b2bContact!!, b2bemail_id!!, base64img!!, b2bContent!!,areaDesc!!, b2baddress!!, b2bType!!, b2bquantity!!)
-//                        updateindatabase(saveb2bdata)
+                        val saveb2bdata = B2BRequest(user_id!!, b2bProductName!!, b2bName!!, b2bContact!!, b2bemail_id!!, base64img!!, b2bContent!!,areaDesc!!, b2baddress!!, b2bType!!, b2bquantity!!)
+                        updateindatabase(saveb2bdata)
                     } else {
                         Toast.makeText(this, "Upload Image", Toast.LENGTH_SHORT).show()
 
@@ -206,7 +207,7 @@ class SpecificB2BActivity : BaseActivity() {
     }
 
 
-    /*
+
         private fun updateindatabase(saveb2b: B2BRequest) {
             spotDialog!!.show()
             val requestBody = HashMap<String, B2BRequest>()
@@ -249,7 +250,7 @@ class SpecificB2BActivity : BaseActivity() {
             })
 
         }
-    */
+
     private fun deletePost() {
         spotDialog!!.show()
         val client: OkHttpClient = OkHttpClient.Builder().addInterceptor(object : Interceptor {

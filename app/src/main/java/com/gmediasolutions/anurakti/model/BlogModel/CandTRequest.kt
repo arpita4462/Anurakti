@@ -1,4 +1,4 @@
-package com.gmediasolutions.anurakti.model.CandTModel
+package com.gmediasolutions.anurakti.model.BlogModel
 
 data class CandTRequest(
         private var userId: String? = null,

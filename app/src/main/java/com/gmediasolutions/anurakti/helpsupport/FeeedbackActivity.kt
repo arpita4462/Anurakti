@@ -12,23 +12,6 @@ import com.gmediasolutions.anurakti.BaseActivity
 import com.gmediasolutions.anurakti.base.MainActivity
 import com.gmediasolutions.anurakti.R
 import kotlinx.android.synthetic.main.custom_toolbar.*
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.view.animation.AnimationUtils
-import android.widget.LinearLayout
-import com.daimajia.androidanimations.library.Techniques
-import com.daimajia.androidanimations.library.YoYo
-import com.gmediasolutions.anurakti.adapter.VendorRVAdapter
-import com.gmediasolutions.anurakti.b2b.B2BActivity
-import com.gmediasolutions.anurakti.blogger.BloggerActivity
-import com.gmediasolutions.anurakti.careerandtalent.CandTActivity
-import com.gmediasolutions.anurakti.newsevent.NewsEventActivity
-import com.gmediasolutions.anurakti.socialmedia.UserSocialActivity
-import com.gmediasolutions.anurakti.vendor.VendorsActivity
-import com.willowtreeapps.spruce.Spruce
-import com.willowtreeapps.spruce.animation.DefaultAnimations
-import com.willowtreeapps.spruce.sort.DefaultSort
-
 
 class FeeedbackActivity : BaseActivity() {
     var listState: Parcelable? = null

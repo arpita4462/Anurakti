@@ -34,8 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_marginRight="10dp"
-            android:textColor="@color/text_color"
-            android:text="1 min ago"/>
+            android:textColor="@color/text_color"/>
 
         <TextView
             android:id="@+id/blog_headline_tv"
@@ -46,8 +45,7 @@
             android:transitionName="@string/transiton_text"
             android:textColor="@color/black"
             android:textStyle="bold"
-            android:textSize="30sp"
-            android:text="@string/blogger_headline"/>
+            android:textSize="18sp"/>
 
 </LinearLayout>
 </LinearLayout>

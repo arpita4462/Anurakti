@@ -25,6 +25,10 @@ import com.gmediasolutions.anurakti.custom.ForgetPswdDialog
 import com.gmediasolutions.anurakti.model.LoginModel.LoginRequest
 import com.gmediasolutions.anurakti.model.LoginModel.LoginReturn
 import com.gmediasolutions.anurakti.model.LoginModel.VerifyEmailModel
+import com.google.firebase.FirebaseApp
+import com.google.firebase.FirebaseOptions
+import com.google.firebase.iid.FirebaseInstanceId
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_login.*
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -81,6 +85,31 @@ class LoginActivity : AppCompatActivity(), NetworkStateReceiver.NetworkStateRece
         user_token = loginuser.get(SessionManagment.USER_TOKEN)
 
         Log.i("user11", loginuser.toString())
+
+
+        try{
+            val options = FirebaseOptions.Builder()
+                .setApplicationId("1:121730859529:android:35150b09369d4290") // Required for Analytics.
+                .setApiKey("AIzaSyDv9PeSsAVCuiJLETMd-al23Uish9fQrTA") // Required for Auth.
+                .build()
+
+            var hasBeenInitialized = false
+            val firebaseApps = FirebaseApp.getApps(this)
+            for (app in firebaseApps)
+            {
+                if (app.getName().equals(FirebaseApp.DEFAULT_APP_NAME)) {
+                    hasBeenInitialized = true
+                }
+            }
+            if (!hasBeenInitialized)
+            {
+                FirebaseApp.initializeApp(this, options)
+            }else{
+                FirebaseApp.initializeApp(this, options)
+            }
+        }catch (e:Exception){
+            Log.d( "Exception: " , e.toString())
+        }
 
 
 //        Intent from register class
@@ -182,7 +211,7 @@ class LoginActivity : AppCompatActivity(), NetworkStateReceiver.NetworkStateRece
                         val user_responsetoken = loginresponse.result.token
                         if (response.isSuccessful) {
                             pDialog!!.dismiss()
-//                            subscribeToPushService(user_responseid)
+                            subscribeToPushService(user_responseid)
                             if (loginresponse.response.equals("error")) {
                                 pDialog!!.dismiss()
                                 Toast.makeText(applicationContext, "Authentication Error", Toast.LENGTH_LONG).show()
@@ -252,10 +281,10 @@ class LoginActivity : AppCompatActivity(), NetworkStateReceiver.NetworkStateRece
     }
 
     //subscribe for notification
-//  private fun subscribeToPushService(user_id: String) {
-//      FirebaseMessaging.getInstance().subscribeToTopic(user_id)
-//      firebase_token = FirebaseInstanceId.getInstance().getToken()
-//  }
+  private fun subscribeToPushService(user_id: String) {
+      FirebaseMessaging.getInstance().subscribeToTopic(user_id)
+      firebase_token = FirebaseInstanceId.getInstance().getToken()
+  }
 
 
     //saved instance for screen rotation

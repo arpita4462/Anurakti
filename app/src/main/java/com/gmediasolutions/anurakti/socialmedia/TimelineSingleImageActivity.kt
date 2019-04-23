@@ -82,7 +82,7 @@ class TimelineSingleImageActivity : BaseActivity() {
                     et_post_one_view.requestFocus()
                 } else {
                     val savecomment = TimelineCommentRequest(gettimelineId!!, user_id!!, editComment!!)
-//                    saveindatabase(savecomment)
+                    saveindatabase(savecomment)
                     et_post_one_view.setText("")
                     commentadapter!!.notifyDataSetChanged()
                     getpiccomment(gettimelineId)
@@ -198,7 +198,7 @@ class TimelineSingleImageActivity : BaseActivity() {
         })
     }
 
-/*
+
     private fun saveindatabase(savecomment: TimelineCommentRequest) {
         spotDialog!!.show()
         val requestBody = HashMap<String, TimelineCommentRequest>()
@@ -243,7 +243,7 @@ class TimelineSingleImageActivity : BaseActivity() {
         })
 
     }
-*/
+
 
 
     override fun onSaveInstanceState(outState: Bundle?) {

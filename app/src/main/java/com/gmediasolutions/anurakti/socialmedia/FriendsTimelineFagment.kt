@@ -26,6 +26,7 @@ import com.gmediasolutions.anurakti.alert.SessionManagment
 import com.gmediasolutions.anurakti.base.LoginActivity
 import com.gmediasolutions.anurakti.model.ApiReturn
 import com.gmediasolutions.anurakti.model.UserSocialModel.*
+import com.google.firebase.iid.FirebaseInstanceId
 import com.wang.avi.AVLoadingIndicatorView
 import okhttp3.*
 import org.json.JSONObject
@@ -102,7 +103,7 @@ class FriendsTimelineFagment : Fragment(), NetworkStateReceiver.NetworkStateRece
         frndUserName = arguments!!.getString("frnd_name")
 
 //        firebase for notification
-//        regId = FirebaseInstanceId.getInstance().token
+        regId = FirebaseInstanceId.getInstance().token
         mClient = OkHttpClient()
 
 
@@ -172,14 +173,14 @@ class FriendsTimelineFagment : Fragment(), NetworkStateReceiver.NetworkStateRece
 
         addfrnd!!.setOnClickListener {
             if (addfrnd!!.text.toString().trim().equals("Add Friend")) {
-//                val userReqst = AddFrndRequest(currentUserID!!, frndUserID!!, "requesting")
-//                sendFrndRequest(userReqst)
+                val userReqst = AddFrndRequest(currentUserID!!, frndUserID!!, "requesting")
+                sendFrndRequest(userReqst)
             } else if (addfrnd!!.text.toString().trim().equals("Accept Request")) {
-//                acceptFrndRequest(id!!)
+                acceptFrndRequest(id!!)
             }
         }
         canelfrnd!!.setOnClickListener {
-//            deleteFrndRequest(id!!)
+            deleteFrndRequest(id!!)
         }
 
         post_frnd_text!!.setOnClickListener {
@@ -266,7 +267,7 @@ class FriendsTimelineFagment : Fragment(), NetworkStateReceiver.NetworkStateRece
 
     }
 
-/*  //Add friend
+  //Add friend
 
   private fun sendFrndRequest(users: AddFrndRequest) {
       NotificationContent = "You got a friend request."
@@ -325,10 +326,10 @@ class FriendsTimelineFagment : Fragment(), NetworkStateReceiver.NetworkStateRece
           }
       })
   }
-*/
 
 
-/*
+
+
   private fun saveNotification(savenoti: NotificationRequest, regId: String?, user_id: String) {
       spotdialog!!.show()
       val requestBody = HashMap<String, NotificationRequest>()
@@ -374,10 +375,10 @@ class FriendsTimelineFagment : Fragment(), NetworkStateReceiver.NetworkStateRece
           }
       })
   }
-*/
+
 
   //Delete Friend and Cancel Friend
-/*
+
   private fun deleteFrndRequest(id: String) {
       spotdialog!!.show()
       val client: OkHttpClient = OkHttpClient.Builder().addInterceptor(object : Interceptor {
@@ -428,10 +429,10 @@ class FriendsTimelineFagment : Fragment(), NetworkStateReceiver.NetworkStateRece
 
 
   }
-*/
+
 
   //Accept Friend Request
-/*
+
   private fun acceptFrndRequest(id: String) {
       spotdialog!!.show()
       val client: OkHttpClient = OkHttpClient.Builder().addInterceptor(object : Interceptor {
@@ -483,7 +484,7 @@ class FriendsTimelineFagment : Fragment(), NetworkStateReceiver.NetworkStateRece
           }
       })
   }
-*/
+
 
   @SuppressLint("StaticFieldLeak")
   private fun sendNotification(regId: String, user_id: String) {

@@ -28,9 +28,7 @@ class SplashActivity : AppCompatActivity() {
         YoYo.with(Techniques.ZoomIn)
             .duration(2000)
             .playOn(findViewById(R.id.logo))
-//        text animation
-        val typeface = ResourcesCompat.getFont(this, R.font.bodonbd)
-        appname_tv.setTypeface(typeface)
+//        appname_tv.setTypeface(typeface)
 
         appname_tv.setListener(object : TextViewListener {
             override fun onTextStart() {

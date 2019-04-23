@@ -1,5 +1,6 @@
 package com.gmediasolutions.anurakti.socialmedia
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -7,6 +8,7 @@ import android.content.IntentFilter
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.graphics.drawable.BitmapDrawable
 import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Bundle
@@ -17,9 +19,13 @@ import android.util.Base64
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import com.gmediasolutions.anurakti.ApiInterface
 import com.gmediasolutions.anurakti.BaseActivity
 import com.gmediasolutions.anurakti.R
+import com.gmediasolutions.anurakti.base.LoginActivity
 import com.gmediasolutions.anurakti.base.MainActivity
+import com.gmediasolutions.anurakti.model.UserSocialModel.TimelineRequest
+import com.gmediasolutions.anurakti.model.UserSocialModel.TimelineReturn
 import kotlinx.android.synthetic.main.activity_add_post.*
 import kotlinx.android.synthetic.main.custom_toolbar.*
 import okhttp3.Interceptor
@@ -43,6 +49,7 @@ class AddPostActivity : BaseActivity() {
 
     private var current_user_id: String? = null
 
+    @SuppressLint("MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_post)
@@ -76,15 +83,15 @@ class AddPostActivity : BaseActivity() {
                     val byte = bao.toByteArray()
                     base64img = Base64.encodeToString(byte, Base64.NO_WRAP)
 
-//                    val update = TimelineRequest(user_id!!, posttext!!, base64img!!)
-//                    updatepost(update)
+                    val update = TimelineRequest(user_id!!, posttext!!, base64img!!)
+                    updatepost(update)
 
                 } else {
                     if (posttext.equals("")) {
                         Toast.makeText(this, "Fill the Details", Toast.LENGTH_LONG).show()
                     } else {
-//                        val update = TimelineRequest(user_id!!, posttext!!, "null")
-//                        updatepost(update)
+                        val update = TimelineRequest(user_id!!, posttext!!, "null")
+                        updatepost(update)
                     }
                 }
             }
@@ -108,56 +115,58 @@ class AddPostActivity : BaseActivity() {
         }
     }
 
-//    private fun updatepost(savepost: TimelineRequest) {
-//        spotDialog!!.show()
-//        val requestBody = HashMap<String, TimelineRequest>()
-//        requestBody.clear()
-//        requestBody.put("data", savepost)
-//
-//        val client: OkHttpClient = OkHttpClient.Builder().addInterceptor(object : Interceptor {
-//            override fun intercept(chain: Interceptor.Chain?): okhttp3.Response {
-//                val newRequest = chain!!.request().newBuilder().addHeader("Authorization", "bearer $user_token").build()
-//                return chain.proceed(newRequest)
-//            }
-//
-//        }).build()
-//        val retrofituser = Retrofit.Builder().addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .client(client)
-//            .baseUrl(getString(R.string.base_url))
-//            .build()
-//        val apiServiceuser = retrofituser.create(ApiInterface::class.java)
-//        val postUser = apiServiceuser.addTimeline(requestBody)
-//
-//        postUser.enqueue(object : Callback<TimelineReturn> {
-//
-//            override fun onFailure(call: Call<TimelineReturn>, t: Throwable) {
-//                spotDialog!!.dismiss()
-//                Toast.makeText(this@CreatePost, "No Internet Connection", Toast.LENGTH_SHORT).show()
-//
-//            }
-//
-//            override fun onResponse(call: Call<TimelineReturn>, response: Response<TimelineReturn>) {
-//                if (response.code() == 401) {
-//                    spotDialog!!.dismiss()
-//                    session!!.logoutUser()
-//                    Toast.makeText(this@CreatePost, "Session Out", Toast.LENGTH_LONG).show()
-//                    startActivity(Intent(this@CreatePost, LoginActivity::class.java))
-//                    finish()
-//                } else {
-//                    if (response.isSuccessful) {
-//                        spotDialog!!.dismiss()
-//                        startActivity(Intent(this@CreatePost, MyProfileActivity::class.java))
-//                        Toast.makeText(this@CreatePost, "Successfully Upload", Toast.LENGTH_SHORT).show()
-//                    } else {
-//                        spotDialog!!.dismiss()
-//                        Toast.makeText(this@CreatePost, "Uploading Error", Toast.LENGTH_SHORT).show()
-//                    }
-//                }
-//            }
-//        })
-//
-//    }
+
+    private fun updatepost(savepost: TimelineRequest) {
+        spotDialog!!.show()
+        val requestBody = HashMap<String, TimelineRequest>()
+        requestBody.clear()
+        requestBody.put("data", savepost)
+
+        val client: OkHttpClient = OkHttpClient.Builder().addInterceptor(object : Interceptor {
+            override fun intercept(chain: Interceptor.Chain?): okhttp3.Response {
+                val newRequest = chain!!.request().newBuilder().addHeader("Authorization", "bearer $user_token").build()
+                return chain.proceed(newRequest)
+            }
+
+        }).build()
+        val retrofituser = Retrofit.Builder().addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
+            .baseUrl(getString(R.string.base_url))
+            .build()
+        val apiServiceuser = retrofituser.create(ApiInterface::class.java)
+        val postUser = apiServiceuser.addTimeline(requestBody)
+
+        postUser.enqueue(object : Callback<TimelineReturn> {
+
+            override fun onFailure(call: Call<TimelineReturn>, t: Throwable) {
+                spotDialog!!.dismiss()
+                Toast.makeText(this@AddPostActivity, "No Internet Connection", Toast.LENGTH_SHORT).show()
+
+            }
+
+            override fun onResponse(call: Call<TimelineReturn>, response: Response<TimelineReturn>) {
+                if (response.code() == 401) {
+                    spotDialog!!.dismiss()
+                    session!!.logoutUser()
+                    Toast.makeText(this@AddPostActivity, "Session Out", Toast.LENGTH_LONG).show()
+                    startActivity(Intent(this@AddPostActivity, LoginActivity::class.java))
+                    finish()
+                } else {
+                    if (response.isSuccessful) {
+                        spotDialog!!.dismiss()
+                        startActivity(Intent(this@AddPostActivity, UserSocialActivity::class.java))
+                        Toast.makeText(this@AddPostActivity, "Successfully Upload", Toast.LENGTH_SHORT).show()
+                    } else {
+                        spotDialog!!.dismiss()
+                        Toast.makeText(this@AddPostActivity, "Uploading Error", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        })
+
+    }
+
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -16,11 +16,24 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
+import com.gmediasolutions.anurakti.ApiInterface
 import com.gmediasolutions.anurakti.BaseActivity
 import com.gmediasolutions.anurakti.base.MainActivity
 import com.gmediasolutions.anurakti.R
+import com.gmediasolutions.anurakti.base.LoginActivity
+import com.gmediasolutions.anurakti.model.ApiReturn
+import com.gmediasolutions.anurakti.model.B2BModel.B2BRequest
+import com.gmediasolutions.anurakti.model.B2BModel.B2BResponse
 import kotlinx.android.synthetic.main.activity_b2b_registration.*
 import kotlinx.android.synthetic.main.custom_toolbar.*
+import okhttp3.Interceptor
+import okhttp3.OkHttpClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import java.io.ByteArrayOutputStream
 
 class B2BRegistrationActivity : BaseActivity() {
@@ -117,8 +130,8 @@ class B2BRegistrationActivity : BaseActivity() {
                     val byte = bao.toByteArray()
                     base64img = Base64.encodeToString(byte, Base64.NO_WRAP)
 
-//                    val saveb2bdata = B2BRequest(user_id!!,b2bProductName!!,b2bName!!, b2bContact!!, b2bemail_id!!, base64img!!, b2bContent!!,areaDescrip!!, b2baddress!!, b2bType!!, b2bquantity!!)
-//                    saveindatabase(saveb2bdata)
+                    val saveb2bdata = B2BRequest(user_id!!,b2bProductName!!,b2bName!!, b2bContact!!, b2bemail_id!!, base64img!!, b2bContent!!,areaDescrip!!, b2baddress!!, b2bType!!, b2bquantity!!)
+                    saveindatabase(saveb2bdata)
 
                 } else {
                     Toast.makeText(applicationContext, "Upload Image", Toast.LENGTH_SHORT).show()
@@ -165,9 +178,8 @@ class B2BRegistrationActivity : BaseActivity() {
         }
     }
 
-    /*
         private fun saveindatabase(saveb2b: B2BRequest) {
-            spotdialog!!.show()
+//            spotdialog!!.show()
             val requestBody = HashMap<String, B2BRequest>()
            requestBody.clear()
             requestBody.put("data", saveb2b)
@@ -184,29 +196,29 @@ class B2BRegistrationActivity : BaseActivity() {
                     .build()
             val apiServiceuser = retrofituser.create(ApiInterface::class.java)
             val postUser = apiServiceuser.addProduct(requestBody)
-            postUser.enqueue(object : Callback<ApiReturn> {
+            postUser.enqueue(object : Callback<B2BResponse> {
 
-                override fun onFailure(call: Call<ApiReturn>, t: Throwable) {
-                    spotdialog!!.dismiss()
+                override fun onFailure(call: Call<B2BResponse>, t: Throwable) {
+//                    spotdialog!!.dismiss()
                     Toast.makeText(this@B2BRegistrationActivity, "No Internet Connection", Toast.LENGTH_SHORT).show()
                 }
 
-                override fun onResponse(call: Call<ApiReturn>, response: Response<ApiReturn>) {
+                override fun onResponse(call: Call<B2BResponse>, response: Response<B2BResponse>) {
                     if (response.code() == 401) {
-                        spotdialog!!.dismiss()
+//                        spotdialog!!.dismiss()
                         session!!.logoutUser()
                         Toast.makeText(this@B2BRegistrationActivity, "Session Out", Toast.LENGTH_LONG).show()
                         startActivity(Intent(this@B2BRegistrationActivity, LoginActivity::class.java))
                         finish()
                     } else {
                         if (response.isSuccessful) {
-                            spotdialog!!.dismiss()
+//                            spotdialog!!.dismiss()
                             cleartext()
                             val intenttem = Intent(this@B2BRegistrationActivity, B2BActivity::class.java)
                             startActivity(intenttem)
                             Toast.makeText(this@B2BRegistrationActivity, "Successfully Uploaded", Toast.LENGTH_SHORT).show()
                         } else {
-                            spotdialog!!.dismiss()
+//                            spotdialog!!.dismiss()
                             Toast.makeText(this@B2BRegistrationActivity, "Uploading Error", Toast.LENGTH_SHORT).show()
                         }
                     }
@@ -215,7 +227,6 @@ class B2BRegistrationActivity : BaseActivity() {
             })
 
         }
-    */
     private fun isValidate(): Boolean {
         if (b2b_fullname.getText().toString().trim().length < 1) {
             b2b_fullname.error = getString(R.string.ErrorField)

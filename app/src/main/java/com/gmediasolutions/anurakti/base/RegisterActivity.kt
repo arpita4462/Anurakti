@@ -1,33 +1,26 @@
 package com.gmediasolutions.anurakti.base
 
-import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
 import android.content.IntentFilter
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.Color
-import android.graphics.Typeface
 import android.net.ConnectivityManager
-import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Base64
 import android.util.Log
 import android.view.View
-import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.gmediasolutions.anurakti.ApiInterface
 import com.gmediasolutions.anurakti.R
 import com.gmediasolutions.anurakti.alert.NetworkStateReceiver
+import com.gmediasolutions.anurakti.model.ApiReturn
 import com.gmediasolutions.anurakti.model.RegisterModel
+import com.gmediasolutions.anurakti.model.SignUpModel
 import kotlinx.android.synthetic.main.activity_register.*
 
 import retrofit2.Call
@@ -37,10 +30,6 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-import java.io.ByteArrayOutputStream
-import java.io.FileNotFoundException
-import java.io.InputStream
-
 
 class RegisterActivity : AppCompatActivity(), NetworkStateReceiver.NetworkStateReceiverListener {
 
@@ -48,15 +37,25 @@ class RegisterActivity : AppCompatActivity(), NetworkStateReceiver.NetworkStateR
 
     private var pDialog: ProgressDialog? = null
 
-    private var edtname: EditText? = null
+    private var edtfname: EditText? = null
+    private var edtlname: EditText? = null
+    private var edtgender: EditText? = null
+    private var edtcountry: EditText? = null
+    private var edtstate: EditText? = null
     private var edtemail: EditText? = null
+    private var edtmobile: EditText? = null
     private var edtpass: EditText? = null
     private var edtcnfpass: EditText? = null
     //    private var edtnumber: EditText? = null
     private var check: String? = null
-    private var name: String? = null
+    private var fname: String? = null
+    private var lname: String? = null
+    private var gender: String? = null
+    private var country: String? = null
+    private var state: String? = null
     private var email: String? = null
     private var password: String? = null
+    private var confpassword: String? = null
     private var mobile: String? = null
 
     companion object {
@@ -75,17 +74,25 @@ class RegisterActivity : AppCompatActivity(), NetworkStateReceiver.NetworkStateR
 
         pDialog = ProgressDialog(this)
 
-        edtname = findViewById(R.id.name)
+        edtfname = findViewById(R.id.fname)
+        edtlname = findViewById(R.id.lname)
+        edtcountry = findViewById(R.id.country)
+        edtstate = findViewById(R.id.state)
+        edtgender = findViewById(R.id.gender)
         edtemail = findViewById(R.id.email)
+        edtmobile = findViewById(R.id.mobile)
         edtpass = findViewById(R.id.password)
         edtcnfpass = findViewById(R.id.confirmpassword)
 //        edtnumber = findViewById(R.id.number)
 
-        edtname!!.addTextChangedListener(nameWatcher)
+        edtfname!!.addTextChangedListener(fnameWatcher)
+        edtlname!!.addTextChangedListener(lnameWatcher)
+        edtstate!!.addTextChangedListener(stateWatcher)
+        edtcountry!!.addTextChangedListener(countryWatcher)
         edtemail!!.addTextChangedListener(emailWatcher)
         edtpass!!.addTextChangedListener(passWatcher)
         edtcnfpass!!.addTextChangedListener(cnfpassWatcher)
-//        edtnumber!!.addTextChangedListener(numberWatcher)
+        edtmobile!!.addTextChangedListener(numberWatcher)
 
 
 //        validate user details and register user
@@ -94,15 +101,21 @@ class RegisterActivity : AppCompatActivity(), NetworkStateReceiver.NetworkStateR
 
             if (validateName() && validateEmail() && validatePass() && validateCnfPass()) {
 
-                name = edtname!!.text.toString()
+                fname = edtfname!!.text.toString()
+                lname = edtlname!!.text.toString()
+                gender = edtgender!!.text.toString()
+                country = edtcountry!!.text.toString()
+                state = edtstate!!.text.toString()
+                mobile = edtmobile!!.text.toString()
                 email = edtemail!!.text.toString()
-                password = edtcnfpass!!.text.toString()
-//                mobile = edtnumber!!.text.toString()
+                password = edtpass!!.text.toString()
+                confpassword = edtcnfpass!!.text.toString()
 
                 //Validation Success
-                val userRegister = RegisterModel("200", name!!, email!!, password!!)
+                val userRegister = SignUpModel(fname, lname!!, email!!, password!!,confpassword,true,
+                    gender,country,state,mobile)
                 saveUserDetail(userRegister)
-                Toast.makeText(applicationContext, "Registration Successful", Toast.LENGTH_LONG).show()
+//                Toast.makeText(applicationContext, "Registration Successful", Toast.LENGTH_LONG).show()
 
             }
         }
@@ -110,6 +123,8 @@ class RegisterActivity : AppCompatActivity(), NetworkStateReceiver.NetworkStateR
 //        Take already registered user to login page
 
         login_now.setOnClickListener {
+
+//            checkconnectionapi()
             startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
             finish()
         }
@@ -118,7 +133,7 @@ class RegisterActivity : AppCompatActivity(), NetworkStateReceiver.NetworkStateR
 
     //TextWatcher for Name -----------------------------------------------------
 
-    internal var nameWatcher: TextWatcher = object : TextWatcher {
+    internal var fnameWatcher: TextWatcher = object : TextWatcher {
         override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
             //none
         }
@@ -130,10 +145,70 @@ class RegisterActivity : AppCompatActivity(), NetworkStateReceiver.NetworkStateR
         override fun afterTextChanged(s: Editable) {
 
             check = s.toString()
-            edtname!!.requestFocus()
+            edtfname!!.requestFocus()
 
             if (check!!.length < 4 || check!!.length > 20) {
-                edtname!!.error = "Name Must consist of 4 to 20 characters"
+                edtfname!!.error = "Name Must consist of 4 to 20 characters"
+            }
+        }
+
+    }
+    internal var lnameWatcher: TextWatcher = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+            //none
+        }
+
+        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+            //none
+        }
+
+        override fun afterTextChanged(s: Editable) {
+
+            check = s.toString()
+            edtlname!!.requestFocus()
+
+            if (check!!.length < 4 || check!!.length > 20) {
+                edtlname!!.error = "Name Must consist of 4 to 20 characters"
+            }
+        }
+
+    }
+    internal var countryWatcher: TextWatcher = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+            //none
+        }
+
+        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+            //none
+        }
+
+        override fun afterTextChanged(s: Editable) {
+
+            check = s.toString()
+            edtcountry!!.requestFocus()
+
+            if (check!!.length < 4 || check!!.length > 20) {
+                edtcountry!!.error = "Name Must consist of 4 to 20 characters"
+            }
+        }
+
+    }
+    internal var stateWatcher: TextWatcher = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+            //none
+        }
+
+        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+            //none
+        }
+
+        override fun afterTextChanged(s: Editable) {
+
+            check = s.toString()
+            edtstate!!.requestFocus()
+
+            if (check!!.length < 4 || check!!.length > 20) {
+                edtstate!!.error = "Name Must consist of 4 to 20 characters"
             }
         }
 
@@ -218,7 +293,7 @@ class RegisterActivity : AppCompatActivity(), NetworkStateReceiver.NetworkStateR
 
     //TextWatcher for Mobile -----------------------------------------------------
 
-/*
+
     internal var numberWatcher: TextWatcher = object : TextWatcher {
         override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
             //none
@@ -231,25 +306,25 @@ class RegisterActivity : AppCompatActivity(), NetworkStateReceiver.NetworkStateR
         override fun afterTextChanged(s: Editable) {
 
             check = s.toString()
-            edtnumber!!.requestFocus()
+            edtmobile!!.requestFocus()
 
             if (check!!.length > 10) {
-                edtnumber!!.error = "Number cannot be grated than 10 digits"
+                edtmobile!!.error = "Number cannot be grated than 10 digits"
             } else if (check!!.length < 10) {
-                edtnumber!!.error = "Number should be 10 digits"
+                edtmobile!!.error = "Number should be 10 digits"
             }
         }
 
     }
-*/
+
 
 
 //    save instance for screen rotation
 
     override fun onSaveInstanceState(outState: Bundle?) {
         outState!!.putString("KeyEmail", edtemail!!.text.toString())
-        outState.putString("KeyName", edtname!!.text.toString())
-//        outState.putString("KeyPhone", edtnumber!!.text.toString())
+        outState.putString("KeyName", edtfname!!.text.toString())
+        outState.putString( "KeyPhone", edtmobile!!.text.toString())
         outState.putString("KeyPass", edtpass!!.text.toString())
         outState.putString("KeyConPass", edtcnfpass!!.text.toString())
 
@@ -261,8 +336,8 @@ class RegisterActivity : AppCompatActivity(), NetworkStateReceiver.NetworkStateR
         super.onRestoreInstanceState(savedInstanceState)
 
         email = savedInstanceState!!.getString("KeyEmail")
-        name = savedInstanceState.getString("KeyName")
-//        mobile = savedInstanceState.getString("KeyPhone")
+        fname = savedInstanceState.getString("KeyName")
+        mobile = savedInstanceState.getString("KeyPhone")
         password = savedInstanceState.getString("KeyPass")
 //        edtcnfpass = savedInstanceState.getString("KeyConPass")
 
@@ -270,38 +345,38 @@ class RegisterActivity : AppCompatActivity(), NetworkStateReceiver.NetworkStateR
 
     /*saving the data in Database*/
 
-    private fun saveUserDetail(users: RegisterModel) {
-
+    private fun saveUserDetail(users: SignUpModel) {
+        Log.i("response_user", users.toString())
         pDialog!!.show()
-        val requestBody = HashMap<String, RegisterModel>()
-//        requestBody.put("data", users)
+        val requestBody = HashMap<String, SignUpModel>()
+        requestBody.put("data", users)
         val retrofituser = Retrofit.Builder().addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(getString(R.string.api_base_url))
+            .baseUrl(getString(R.string.base_url))
             .build()
         val apiServiceuser = retrofituser.create(ApiInterface::class.java)
-        val postUser = apiServiceuser.register(requestBody)
+        val postUser = apiServiceuser.registration(requestBody)
 
-        postUser.enqueue(object : Callback<RegisterModel> {
+        postUser.enqueue(object : Callback<ApiReturn> {
 
-            override fun onFailure(call: Call<RegisterModel>, t: Throwable) {
+            override fun onFailure(call: Call<ApiReturn>, t: Throwable) {
                 pDialog!!.dismiss()
                 Log.i("response_fail", t.localizedMessage)
                 Toast.makeText(applicationContext, "Registration Error", Toast.LENGTH_LONG).show()
             }
 
-            override fun onResponse(call: Call<RegisterModel>, response: Response<RegisterModel>) {
-                Log.i("response_succes", response.message())
+            override fun onResponse(call: Call<ApiReturn>, response: Response<ApiReturn>) {
+                Log.i("response_succes_msg", response.message().toString())
                 Log.i("response_succes_code", response.code().toString())
                 Log.i("response_succes_body", response.body().toString())
                 if (response.isSuccessful) {
                     pDialog!!.dismiss()
 
-//                    val singupintent = Intent(applicationContext, LoginActivity::class.java)
-//                    singupintent.putExtra("user_email", email)
-//                    singupintent.putExtra("user_password", password)
-//                    startActivity(singupintent)
-//                    finish()
+                    val singupintent = Intent(applicationContext, LoginActivity::class.java)
+                    singupintent.putExtra("user_email", email)
+                    singupintent.putExtra("user_password", password)
+                    startActivity(singupintent)
+                    finish()
                     Toast.makeText(applicationContext, "Verify your Email Address", Toast.LENGTH_LONG).show()
                 } else {
                     if (response.code() == 422) {
@@ -319,18 +394,18 @@ class RegisterActivity : AppCompatActivity(), NetworkStateReceiver.NetworkStateR
     }
 
     /*Validation of Fields*/
-//    private fun validateNumber(): Boolean {
-//        edtnumber!!.requestFocus()
-//
-//        check = edtnumber!!.text.toString()
-//        Log.e("inside number", check!!.length.toString() + " ")
-//        if (check!!.length > 10) {
-//            return false
-//        } else if (check!!.length < 10) {
-//            return false
-//        }
-//        return true
-//    }
+    private fun validateNumber(): Boolean {
+        edtmobile!!.requestFocus()
+
+        check = edtmobile!!.text.toString()
+        Log.e("inside number", check!!.length.toString() + " ")
+        if (check!!.length > 10) {
+            return false
+        } else if (check!!.length < 10) {
+            return false
+        }
+        return true
+    }
 
     private fun validateCnfPass(): Boolean {
         edtcnfpass!!.requestFocus()
@@ -371,9 +446,9 @@ class RegisterActivity : AppCompatActivity(), NetworkStateReceiver.NetworkStateR
     }
 
     private fun validateName(): Boolean {
-        edtname!!.requestFocus()
+        edtfname!!.requestFocus()
 
-        check = edtname!!.text.toString()
+        check = edtfname!!.text.toString()
         return !(check!!.length < 4 || check!!.length > 20)
 
     }

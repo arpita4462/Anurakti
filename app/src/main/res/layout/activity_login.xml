@@ -17,9 +17,9 @@
                         android:padding="20dp">
                     <ImageView
                             android:id="@+id/logo"
-                            android:layout_width="100dp"
+                            android:layout_width="150dp"
                             android:layout_gravity="center"
-                            android:layout_height="100dp"
+                            android:layout_height="150dp"
                             android:layout_marginTop="30dp"
                             android:src="@drawable/logo_without_name"/>
 
@@ -34,6 +34,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/bodonbd"/>
 
+<!--
                     <TextView
                             android:id="@+id/jawan_tv"
                             android:layout_width="match_parent"
@@ -43,6 +44,7 @@
                             android:layout_gravity="center"
                             android:text="@string/j_a_w_a_n_s"
                             android:textColor="@android:color/black"/>
+-->
 
 
                     <EditText

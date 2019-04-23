@@ -17,6 +17,7 @@ class TermsAndConditionActivity : BaseActivity() {
         info = findViewById(R.id.tems_cond_web)
 
         spotDialog!!.show()
+
         try {
             spotDialog!!.dismiss()
             info!!.loadUrl("file:///android_asset/termsCondition.html")

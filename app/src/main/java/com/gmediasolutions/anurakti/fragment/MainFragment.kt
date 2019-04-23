@@ -26,16 +26,16 @@ import com.gmediasolutions.anurakti.alert.NetworkStateReceiver
 import com.gmediasolutions.anurakti.alert.SessionManagment
 import com.gmediasolutions.anurakti.b2b.B2BActivity
 import com.gmediasolutions.anurakti.base.LoginActivity
-import com.gmediasolutions.anurakti.blogger.BloggerActivity
-import com.gmediasolutions.anurakti.vendor.VendorsActivity
-import com.gmediasolutions.anurakti.careerandtalent.CandTActivity
+import com.gmediasolutions.anurakti.blogger.BlogsActivity
 import com.gmediasolutions.anurakti.helpsupport.HelpSupportActivity
 import com.gmediasolutions.anurakti.model.BannerModel
+import com.gmediasolutions.anurakti.model.NewsModel.GetAllNewsModel
 import com.gmediasolutions.anurakti.model.NewsModel.NewsModel
 import com.gmediasolutions.anurakti.model.NewsModel.UpcomingNE
 import com.gmediasolutions.anurakti.newsevent.NEFilterSerch
-import com.gmediasolutions.anurakti.newsevent.NewsEventActivity
+import com.gmediasolutions.anurakti.newsevent.NewsActivity
 import com.gmediasolutions.anurakti.socialmedia.UserSocialActivity
+import com.gmediasolutions.anurakti.vendor.GetAllVendorsActivity
 import com.wang.avi.AVLoadingIndicatorView
 import io.github.luizgrp.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapter
 import kotlinx.android.synthetic.main.fragment_main.*
@@ -60,7 +60,7 @@ class MainFragment : Fragment(), NetworkStateReceiver.NetworkStateReceiverListen
     private var item4Layout: LinearLayout? = null
     private var item5Layout: LinearLayout? = null
     private var item6Layout: LinearLayout? = null
-    private var item7Layout: LinearLayout? = null
+//    private var item7Layout: LinearLayout? = null
     private var progressBarBannerText: TextView? = null
     private var progressBarBanner: AVLoadingIndicatorView? = null
 
@@ -192,7 +192,7 @@ class MainFragment : Fragment(), NetworkStateReceiver.NetworkStateReceiverListen
         item4Layout = view.findViewById(R.id.item4)
         item5Layout = view.findViewById(R.id.item5)
         item6Layout = view.findViewById(R.id.item6)
-        item7Layout = view.findViewById(R.id.item7)
+//        item7Layout = view.findViewById(R.id.item7)
 
 //        item1Layout!!.setVisibility(View.GONE)
 //        item2Layout!!.setVisibility(View.GONE)
@@ -225,7 +225,7 @@ class MainFragment : Fragment(), NetworkStateReceiver.NetworkStateReceiverListen
         YoYo.with(Techniques.RollIn).duration(1000).playOn(item4Layout)
         YoYo.with(Techniques.RotateInUpLeft).duration(1000).playOn(item5Layout)
         YoYo.with(Techniques.RotateInDownLeft).duration(1000).playOn(item6Layout)
-        YoYo.with(Techniques.RollIn).duration(1000).playOn(item7Layout)
+//        YoYo.with(Techniques.RollIn).duration(1000).playOn(item7Layout)
 
 //        animSlideleft1.setAnimationListener(object : Animation.AnimationListener {
 //            override fun onAnimationStart(animation: Animation) {
@@ -341,14 +341,14 @@ class MainFragment : Fragment(), NetworkStateReceiver.NetworkStateReceiverListen
             startActivity(Intent(context!!, UserSocialActivity::class.java))
         }
         item2Layout!!.setOnClickListener {
-            startActivity(Intent(context!!, BloggerActivity::class.java))
+            startActivity(Intent(context!!, BlogsActivity::class.java))
         }
 
         item3Layout!!.setOnClickListener {
-            startActivity(Intent(context!!, NewsEventActivity::class.java))
+            startActivity(Intent(context!!, NewsActivity::class.java))
         }
         item4Layout!!.setOnClickListener {
-            startActivity(Intent(context!!, VendorsActivity::class.java))
+            startActivity(Intent(context!!, GetAllVendorsActivity::class.java))
         }
         item5Layout!!.setOnClickListener {
             startActivity(Intent(context!!, B2BActivity::class.java))
@@ -356,9 +356,9 @@ class MainFragment : Fragment(), NetworkStateReceiver.NetworkStateReceiverListen
         item6Layout!!.setOnClickListener {
             startActivity(Intent(context!!, HelpSupportActivity::class.java))
         }
-        item7Layout!!.setOnClickListener {
-            startActivity(Intent(context!!, CandTActivity::class.java))
-        }
+//        item7Layout!!.setOnClickListener {
+//            startActivity(Intent(context!!, CandTActivity::class.java))
+//        }
 
     }
 
@@ -389,14 +389,14 @@ class MainFragment : Fragment(), NetworkStateReceiver.NetworkStateReceiverListen
         val retrofitobject = Retrofit.Builder().client(client).baseUrl(getString(R.string.base_url))
             .addConverterFactory(GsonConverterFactory.create()).build()
         val apiService = retrofitobject.create(ApiInterface::class.java)
-        val call = apiService.getNews()
-        call.enqueue(object : Callback<UpcomingNE> {
-            override fun onFailure(call: Call<UpcomingNE>, t: Throwable) {
+        val call = apiService.getNews(1)
+        call.enqueue(object : Callback<GetAllNewsModel> {
+            override fun onFailure(call: Call<GetAllNewsModel>, t: Throwable) {
                 spotDialog!!.dismiss()
-                Toast.makeText(context!!, "No Internet Connection", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context!!, "No Internet Connection", Toast.LENGTH_SHORT).show()
             }
 
-            override fun onResponse(call: Call<UpcomingNE>, response: Response<UpcomingNE>) {
+            override fun onResponse(call: Call<GetAllNewsModel>, response: Response<GetAllNewsModel>) {
                 if (response.code() == 401) {
                     spotDialog!!.dismiss()
                     session!!.logoutUser()
@@ -408,7 +408,7 @@ class MainFragment : Fragment(), NetworkStateReceiver.NetworkStateReceiverListen
                     if (mnews != null) {
                         spotDialog!!.dismiss()
                         newsList!!.clear()
-                        newsList!!.addAll(mnews.data)
+                        newsList!!.addAll(mnews.data.data!!)
                         neFilterSerch.notifyDataSetChanged()
                     } else {
                         spotDialog!!.dismiss()

@@ -21,7 +21,8 @@
                 android:layout_centerInParent="true"
                 android:drawablePadding="15dp"
                 android:padding="5dp"
-                android:drawableLeft="@drawable/baseline_add_a_photo_black_24"/>
+                android:drawableLeft="@drawable/baseline_add_a_photo_black_24"
+                android:drawableStart="@drawable/baseline_add_a_photo_black_24"/>
         <ImageView
                 android:id="@+id/blog_iv"
                 android:layout_width="match_parent"
@@ -31,7 +32,8 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp" />
+                android:layout_marginTop="8dp"
+                android:contentDescription="@string/select_image"/>
     </RelativeLayout>
 
         <Button
@@ -54,7 +56,8 @@
                 app:layout_constraintBottom_toTopOf="@id/et_blog"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/blog_rl"
-                app:layout_constraintVertical_bias="0.486" />
+                app:layout_constraintVertical_bias="0.486"
+                android:drawableStart="@drawable/baseline_add_a_photo_black_24"/>
         <EditText
                 android:id="@+id/et_blog"
                 android:layout_width="match_parent"
@@ -75,7 +78,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/blog_image_btn" />
+                app:layout_constraintTop_toBottomOf="@+id/blog_image_btn"
+                android:inputType="text"/>
 
         <Button
                 android:id="@+id/blog_submit"

@@ -18,12 +18,12 @@
             android:textSize="20dp" />
 
     <TextView
+            android:id="@+id/tv_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:padding="10dp"
             android:textStyle="bold"
-            android:text="74SD5F6Y"
             android:layout_gravity="center"
             android:textColor="@color/colorPrimary"
             android:textSize="30sp" />

@@ -29,7 +29,11 @@ import com.gmediasolutions.anurakti.alert.NetworkStateReceiver
 import com.gmediasolutions.anurakti.alert.SessionManagment
 import com.gmediasolutions.anurakti.base.LoginActivity
 import com.gmediasolutions.anurakti.model.AllUserModel
+import com.gmediasolutions.anurakti.model.ApiReturn
+import com.gmediasolutions.anurakti.model.UserSocialModel.CoverPicRequest
+import com.gmediasolutions.anurakti.model.UserSocialModel.ProfilePicRequest
 import com.gmediasolutions.anurakti.model.UserSocialModel.UserModel
+import com.gmediasolutions.anurakti.model.UserSocialModel.UserProfileRequest
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import com.wang.avi.AVLoadingIndicatorView
@@ -178,13 +182,11 @@ class UserProfileFragment : Fragment(), NetworkStateReceiver.NetworkStateReceive
             permanentCity = aboutus_per_citys!!.text.toString()
             dob = dobyear + "-" + dobmonth + "-" + dobdate
 
-/*
             if (isValidate()) {
 
                 val updateprofile = UserProfileRequest(user_id, "alternate@mail.id", firstName!!, lastName!!, gender!!, dob!!, mobileNumber!!, emailId!!, "9999999999", workingIn!!, highSchool!!, graduation!!, currentCity!!, permanentCity!!, "password")
                 updateProfile(updateprofile)
             }
-*/
         }
         return myView
     }
@@ -487,7 +489,7 @@ class UserProfileFragment : Fragment(), NetworkStateReceiver.NetworkStateReceive
 
     }
 
-/*
+
     private fun updateProfile(saveprofile: UserProfileRequest) {
         spotdialog!!.show()
         val requestBody = HashMap<String, UserProfileRequest>()
@@ -544,7 +546,7 @@ class UserProfileFragment : Fragment(), NetworkStateReceiver.NetworkStateReceive
         })
 
     }
-*/
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -651,8 +653,8 @@ class UserProfileFragment : Fragment(), NetworkStateReceiver.NetworkStateReceive
             val byte = bao.toByteArray()
             base64imgcover = Base64.encodeToString(byte, Base64.NO_WRAP)
 
-//            val savecoverpic = CoverPicRequest(currentUserID!!, base64imgcover!!)
-//            saveindatabasecover(savecoverpic)
+            val savecoverpic = CoverPicRequest(currentUserID!!, base64imgcover!!)
+            saveindatabasecover(savecoverpic)
         } else {
             if (context != null) {
                 Toast.makeText(context, "Upload Image", Toast.LENGTH_SHORT).show()
@@ -668,8 +670,8 @@ class UserProfileFragment : Fragment(), NetworkStateReceiver.NetworkStateReceive
             val byte = bao.toByteArray()
             base64imgprofile = Base64.encodeToString(byte, Base64.NO_WRAP)
 
-//            val saveprofilepic = ProfilePicRequest(currentUserID!!, base64imgprofile!!)
-//            saveindatabasepropic(saveprofilepic)
+            val saveprofilepic = ProfilePicRequest(currentUserID!!, base64imgprofile!!)
+            saveindatabasepropic(saveprofilepic)
         } else {
             if (context != null) {
                 Toast.makeText(context, "Upload Image", Toast.LENGTH_SHORT).show()
@@ -677,7 +679,7 @@ class UserProfileFragment : Fragment(), NetworkStateReceiver.NetworkStateReceive
         }
     }
 
-/*
+
     private fun saveindatabasecover(savecoverpic: CoverPicRequest) {
         spotdialog!!.show()
         val requestBody = HashMap<String, CoverPicRequest>()
@@ -731,9 +733,9 @@ class UserProfileFragment : Fragment(), NetworkStateReceiver.NetworkStateReceive
         })
 
     }
-*/
 
-/*
+
+
     private fun saveindatabasepropic(savecoverpic: ProfilePicRequest) {
         spotdialog!!.show()
         val requestBody = HashMap<String, ProfilePicRequest>()
@@ -786,7 +788,7 @@ class UserProfileFragment : Fragment(), NetworkStateReceiver.NetworkStateReceive
         })
 
     }
-*/
+
 
     private fun isValidate(): Boolean {
         if (aboutus_firstNames!!.getText().toString().trim().length < 1) {

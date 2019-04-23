@@ -42,7 +42,7 @@ class NEFilterSerch(
     }
 
     override fun getItemCount(): Int {
-        return newsListFiltered!!.size
+        return 5
     }
 
     override fun onBindViewHolder(holder: NESearchViewHolder, position: Int) {
@@ -122,7 +122,7 @@ class NEFilterSerch(
                     val filteredList = ArrayList<NewsModel>()
                     for (row in neList!!) {
 
-                        if (row.heading.toLowerCase().contains(charString.toLowerCase()) || row.category.toLowerCase().contains(
+                        if (row.heading!!.toLowerCase().contains(charString.toLowerCase()) || row.category!!.toLowerCase().contains(
                                 charString.toLowerCase()
                             )
                         ) {
