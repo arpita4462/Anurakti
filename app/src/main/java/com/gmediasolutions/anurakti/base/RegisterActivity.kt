@@ -13,6 +13,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.EditText
+import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
 import com.gmediasolutions.anurakti.ApiInterface
@@ -34,6 +35,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class RegisterActivity : AppCompatActivity(), NetworkStateReceiver.NetworkStateReceiverListener {
 
     private var networkStateReceiver: NetworkStateReceiver? = null
+    private var radioGroup: RadioGroup? = null
 
     private var pDialog: ProgressDialog? = null
 
@@ -47,6 +49,7 @@ class RegisterActivity : AppCompatActivity(), NetworkStateReceiver.NetworkStateR
     private var edtpass: EditText? = null
     private var edtcnfpass: EditText? = null
     //    private var edtnumber: EditText? = null
+    private var isArmy: Boolean? = null
     private var check: String? = null
     private var fname: String? = null
     private var lname: String? = null
@@ -74,6 +77,7 @@ class RegisterActivity : AppCompatActivity(), NetworkStateReceiver.NetworkStateR
 
         pDialog = ProgressDialog(this)
 
+        radioGroup = findViewById(R.id.radioGroup_create)
         edtfname = findViewById(R.id.fname)
         edtlname = findViewById(R.id.lname)
         edtcountry = findViewById(R.id.country)
@@ -84,6 +88,8 @@ class RegisterActivity : AppCompatActivity(), NetworkStateReceiver.NetworkStateR
         edtpass = findViewById(R.id.password)
         edtcnfpass = findViewById(R.id.confirmpassword)
 //        edtnumber = findViewById(R.id.number)
+        rb_army.isChecked = true
+        isArmy = true
 
         edtfname!!.addTextChangedListener(fnameWatcher)
         edtlname!!.addTextChangedListener(lnameWatcher)
@@ -96,6 +102,31 @@ class RegisterActivity : AppCompatActivity(), NetworkStateReceiver.NetworkStateR
 
 
 //        validate user details and register user
+        radioGroup!!.setOnCheckedChangeListener { _radioGroup, optionId ->
+            run {
+                when (optionId) {
+                    R.id.rb_army -> {
+                        isArmy = true
+                        edtgender!!.visibility = View.VISIBLE
+                        edtcountry!!.visibility = View.VISIBLE
+                        edtstate!!.visibility = View.VISIBLE
+                        edtmobile!!.visibility = View.VISIBLE
+                    }
+                    R.id.rb_civil -> {
+                        isArmy = false
+                        edtgender!!.visibility = View.GONE
+                        edtcountry!!.visibility = View.GONE
+                        edtstate!!.visibility = View.GONE
+                        edtmobile!!.visibility = View.GONE
+                        edtmobile!!.setText("")
+                        edtstate!!.setText("")
+                        edtcountry!!.setText("")
+                        edtgender!!.setText("")
+                    }
+                }
+            }
+        }
+
 
         register.setOnClickListener {
 
@@ -112,7 +143,7 @@ class RegisterActivity : AppCompatActivity(), NetworkStateReceiver.NetworkStateR
                 confpassword = edtcnfpass!!.text.toString()
 
                 //Validation Success
-                val userRegister = SignUpModel(fname, lname!!, email!!, password!!,confpassword,true,
+                val userRegister = SignUpModel(fname, lname!!, email!!, password!!,confpassword,isArmy,
                     gender,country,state,mobile)
                 saveUserDetail(userRegister)
 //                Toast.makeText(applicationContext, "Registration Successful", Toast.LENGTH_LONG).show()

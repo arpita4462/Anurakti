@@ -29,6 +29,30 @@
                     <!--android:layout_marginBottom="20dp"-->
                     <!--android:layout_centerHorizontal="true"/>-->
 
+            <RadioGroup
+                    android:id="@+id/radioGroup_create"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="25dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:orientation="horizontal">
+
+                <RadioButton
+                        android:id="@+id/rb_army"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/black"
+                        android:layout_height="wrap_content"
+                        android:text="@string/army"/>
+
+                <RadioButton
+                        android:id="@+id/rb_civil"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/black"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:text="@string/civil"/>
+            </RadioGroup>
+
             <EditText
                     android:id="@+id/fname"
                     android:layout_width="match_parent"
