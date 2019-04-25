@@ -132,7 +132,11 @@ class GetAllVendorsActivity : BaseActivity() {
 
     private fun fetchResults(response: Response<VendorsModel>): List<VendorsModelData> {
         val topRatedBlogs = response.body()
-        return topRatedBlogs!!.data
+       var returnvalue:List<VendorsModelData> = ArrayList()
+        if(topRatedBlogs!=null){
+            returnvalue=topRatedBlogs!!.data
+        }
+        return returnvalue
     }
 
 //    private fun loadNextPage() {

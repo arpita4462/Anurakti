@@ -140,7 +140,11 @@ class NewsActivity : BaseActivity() {
      */
     private fun fetchResults(response: Response<GetAllNewsModel>): List<NewsModel> {
         val topRatedBlogs = response.body()
-        return topRatedBlogs!!.data!!.data!!
+        var returnvalue:List<NewsModel> = ArrayList()
+        if (topRatedBlogs!=null){
+            returnvalue=topRatedBlogs!!.data!!.data!!
+        }
+        return returnvalue
     }
 
     private fun loadNextPage() {

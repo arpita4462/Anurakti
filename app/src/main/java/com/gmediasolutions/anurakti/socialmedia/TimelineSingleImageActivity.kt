@@ -58,6 +58,7 @@ class TimelineSingleImageActivity : BaseActivity() {
 
 //        get intent value
         gettimelineId = intent.getStringExtra("timeline_id")
+//        gettimelineId = intent.getStringExtra("pic_id")
         gettimelinetext = intent.getStringExtra("timeline_text")
         gettimelineImage = intent.getStringExtra("timeline_img")
 

@@ -140,7 +140,11 @@ class BlogsActivity : BaseActivity() {
      */
     private fun fetchResults(response: Response<BloggerModel>): List<BlogData> {
         val topRatedBlogs = response.body()
-        return topRatedBlogs!!.data.blogs!!.data!!
+        var returnvalue:List<BlogData> = ArrayList()
+        if (topRatedBlogs!=null){
+          returnvalue =topRatedBlogs!!.data.blogs!!.data!!
+        }
+        return returnvalue
     }
 
     private fun loadNextPage() {

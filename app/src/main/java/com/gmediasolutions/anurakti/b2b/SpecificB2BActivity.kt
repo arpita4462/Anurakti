@@ -239,6 +239,8 @@ class SpecificB2BActivity : BaseActivity() {
                         fieldsenable(false)
                         b2b_uploadimgs.visibility = View.GONE
                         b2b_submits.visibility = View.GONE
+                        val intenttem = Intent(this@SpecificB2BActivity, B2BActivity::class.java)
+                        startActivity(intenttem)
                         Toast.makeText(this@SpecificB2BActivity, "Successfully Uploaded", Toast.LENGTH_SHORT).show()
                     } else {
                         spotDialog!!.dismiss()

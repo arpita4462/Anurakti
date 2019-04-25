@@ -259,26 +259,14 @@ interface ApiInterface {
     @POST("/api/1.0/update/{id}")
     fun updateBlog(@Path("id") id: String,@Part pic: MultipartBody.Part,@Part("subject") subject: RequestBody,@Part("body") body: RequestBody): Call<AddBlogResponse>
 
-
-//    @Headers("Content-Type: application/json")
-//    @PUT("/api/1.0/update/{id} ")
-//    fun updateBlog(@Path("id") id: String,@Body data: AddBlogRequest): Call<AddBlogRequest>
-
     @GET("/api/1.0/blog/{id}")
     fun getBlogbyId(@Path("id") id: Int): Call<SpecificBlogModel>
 
      @DELETE("/api/1.0/blog/{id}")
     fun deleteBlogbyId(): Call<ApiReturn>
 
-
-
     @GET("/api/1.0/vendor")
     fun getVendors(): Call<VendorsModel>
-
-
-//    @Headers("Content-Type: application/json")
-//    @POST("/api/1.0/storefeedback")
-//    fun addFeedback(@Body data: HashMap<String,FeedbackModelData>): Call<ApiReturn>
 
     @Headers("Content-Type: application/json")
     @POST("/api/1.0/storefeedback")

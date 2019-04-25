@@ -5,41 +5,29 @@
 
     <group android:checkableBehavior="single">
         <item
-                android:id="@+id/nav_camera"
-                android:icon="@drawable/ic_menu_camera"
+                android:id="@+id/nav_profile"
+                android:icon="@drawable/baseline_send_black_24"
                 android:title="My Profile"/>
         <item
-                android:id="@+id/nav_gallery"
-                android:icon="@drawable/ic_menu_gallery"
-                android:title="Gallery"/>
+                android:id="@+id/nav_blog"
+                android:icon="@drawable/baseline_send_black_24"
+                android:title="@string/blog"/>
         <item
-                android:id="@+id/nav_slideshow"
-                android:icon="@drawable/ic_menu_slideshow"
-                android:title="Slideshow"/>
+                android:id="@+id/nav_news"
+                android:icon="@drawable/baseline_send_black_24"
+                android:title="@string/news_and_events"/>
         <item
-                android:id="@+id/nav_manage"
-                android:icon="@drawable/ic_menu_manage"
-                android:title="Tools"/>
+                android:id="@+id/nav_vendor"
+                android:icon="@drawable/baseline_send_black_24"
+                android:title="@string/vendor"/>
+        <item
+                android:id="@+id/nav_b2b"
+                android:icon="@drawable/baseline_send_black_24"
+                android:title="@string/b2b"/>
+        <item
+                android:id="@+id/nav_Help"
+                android:icon="@drawable/baseline_send_black_24"
+                android:title="@string/help_support"/>
     </group>
-
-    <item android:title="@string/help_support">
-        <menu>
-            <item
-                    android:id="@+id/contact_us"
-                    android:title="@string/contact_us" />
-            <item
-                    android:id="@+id/terms_conditions"
-                    android:title="@string/terms_conditions" />
-            <item
-                    android:id="@+id/privacy_policy"
-                    android:title="@string/privacy_policy" />
-            <item
-                    android:id="@+id/help_center"
-                    android:title="@string/help_center" />
-            <item
-                    android:id="@+id/log_out"
-                    android:title="@string/log_out" />
-        </menu>
-    </item>
 
 </menu>

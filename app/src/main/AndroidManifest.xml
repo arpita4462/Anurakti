@@ -49,6 +49,7 @@
         <activity android:name=".newsevent.SpecificNewsEventActivity"/>
         <activity android:name=".menuoptions.ContactUsActivity"/>
         <activity android:name=".menuoptions.AboutUsActivity"/>
+        <activity android:name=".socialmedia.CoverImageOneViewActivity"/>
         <activity android:name=".menuoptions.TermsAndConditionActivity"/>
         <activity android:name=".blogger.BlogsActivity"/>
         <activity android:name=".blogger.SpecificBloggerActivity"/>

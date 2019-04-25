@@ -264,7 +264,7 @@ class UserPhotosFragment : Fragment(), NetworkStateReceiver.NetworkStateReceiver
                 .centerCrop()
                 .into(itemHolder.imageView)
             itemHolder.rootView.setOnClickListener {
-                val clickintent = Intent(context, TimelineSingleImageActivity::class.java)
+                val clickintent = Intent(context, CoverImageOneViewActivity::class.java)
                 clickintent.putExtra("pic_id", list[position].picId)
                 clickintent.putExtra("pic_comment", list[position].coverPic)
                 context!!.startActivity(clickintent)
@@ -309,7 +309,7 @@ class UserPhotosFragment : Fragment(), NetworkStateReceiver.NetworkStateReceiver
                 .centerCrop()
                 .into(itemHolder.imageView)
             itemHolder.rootView.setOnClickListener {
-                val clickintent = Intent(context, TimelineSingleImageActivity::class.java)
+                val clickintent = Intent(context, CoverImageOneViewActivity::class.java)
                 clickintent.putExtra("pic_id", list[position].picId)
                 clickintent.putExtra("pic_comment", list[position].pic)
                 context!!.startActivity(clickintent)

@@ -11,6 +11,7 @@ import android.provider.MediaStore
 import android.support.v4.content.ContextCompat
 import android.support.v4.content.res.ResourcesCompat
 import android.util.Base64
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -56,14 +57,15 @@ class B2BRegistrationActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_b2b_registration)
+        val adpter_b2b = ArrayAdapter.createFromResource(this, R.array.b2b_arrays, android.R.layout.simple_spinner_item)
+        adpter_b2b.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         setupToolbar()
 
+        b2b_submit.isEnabled=true
 
 //        spinner setup
-        val adpter_b2b = ArrayAdapter.createFromResource(this, R.array.b2b_arrays, android.R.layout.simple_spinner_item)
 
-        adpter_b2b.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner_b2b.adapter = adpter_b2b
 
         spinner_b2b.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -121,6 +123,8 @@ class B2BRegistrationActivity : BaseActivity() {
             b2bquantity = b2b_quantity.text.toString()
             b2bContent = b2b_detail.text.toString()
             areaDescrip = b2b_areaDesc.text.toString()
+
+            b2b_submit.isEnabled=false
 
             if (isValidate()) {
                 if (b2bImage != null) {
@@ -180,6 +184,7 @@ class B2BRegistrationActivity : BaseActivity() {
 
         private fun saveindatabase(saveb2b: B2BRequest) {
 //            spotdialog!!.show()
+            Log.i("response_succes_msg", saveb2b.toString())
             val requestBody = HashMap<String, B2BRequest>()
            requestBody.clear()
             requestBody.put("data", saveb2b)
@@ -199,11 +204,16 @@ class B2BRegistrationActivity : BaseActivity() {
             postUser.enqueue(object : Callback<B2BResponse> {
 
                 override fun onFailure(call: Call<B2BResponse>, t: Throwable) {
+                    b2b_submit.isEnabled=true
+
 //                    spotdialog!!.dismiss()
                     Toast.makeText(this@B2BRegistrationActivity, "No Internet Connection", Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onResponse(call: Call<B2BResponse>, response: Response<B2BResponse>) {
+                    Log.i("response_succes_msg", response.message().toString())
+                    Log.i("response_succes_code", response.code().toString())
+                    Log.i("response_succes_body", response.body().toString())
                     if (response.code() == 401) {
 //                        spotdialog!!.dismiss()
                         session!!.logoutUser()
@@ -218,6 +228,7 @@ class B2BRegistrationActivity : BaseActivity() {
                             startActivity(intenttem)
                             Toast.makeText(this@B2BRegistrationActivity, "Successfully Uploaded", Toast.LENGTH_SHORT).show()
                         } else {
+                            b2b_submit.isEnabled=true
 //                            spotdialog!!.dismiss()
                             Toast.makeText(this@B2BRegistrationActivity, "Uploading Error", Toast.LENGTH_SHORT).show()
                         }

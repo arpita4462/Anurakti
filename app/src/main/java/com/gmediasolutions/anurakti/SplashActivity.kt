@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
 import com.gmediasolutions.anurakti.base.LoginActivity
-import com.gmediasolutions.anurakti.R.id.textView
 import android.widget.Toast
 import believe.cht.fadeintextview.TextViewListener
 import kotlinx.android.synthetic.main.splash_screen.*

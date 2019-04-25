@@ -18,8 +18,8 @@ class SessionManagment(internal var _context: Context) {
     val userDetails: HashMap<String, String>
         get() {
             val user = HashMap<String, String>()
-            user[USER_ID] = pref.getString(USER_ID, "null")
-            user[USER_TOKEN] = pref.getString(USER_TOKEN, "null")
+            user[USER_ID] = pref.getString(USER_ID, "null")!!
+            user[USER_TOKEN] = pref.getString(USER_TOKEN, "null")!!
 
             return user
         }

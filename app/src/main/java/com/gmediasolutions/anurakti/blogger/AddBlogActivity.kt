@@ -172,7 +172,7 @@ class AddBlogActivity : BaseActivity() {
                     if (response.isSuccessful) {
                         spotDialog!!.dismiss()
                         startActivity(Intent(this@AddBlogActivity, BlogsActivity::class.java))
-                        Toast.makeText(this@AddBlogActivity, "Successfully Upload", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@AddBlogActivity, "Successfully Upload,Wait for admin approve", Toast.LENGTH_SHORT).show()
                     } else {
                         spotDialog!!.dismiss()
                         Toast.makeText(this@AddBlogActivity, "Uploading Error", Toast.LENGTH_SHORT).show()

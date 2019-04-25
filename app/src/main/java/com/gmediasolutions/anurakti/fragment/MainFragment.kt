@@ -64,7 +64,7 @@ class MainFragment : Fragment(), NetworkStateReceiver.NetworkStateReceiverListen
     private var progressBarBannerText: TextView? = null
     private var progressBarBanner: AVLoadingIndicatorView? = null
 
-    var spotDialog: AVLoadingDialog? = null
+//    var spotDialog: AVLoadingDialog? = null
     var networkStateReceiver: NetworkStateReceiver? = null
     var session: SessionManagment? = null
     var user_token: String? = null
@@ -89,7 +89,7 @@ class MainFragment : Fragment(), NetworkStateReceiver.NetworkStateReceiverListen
         networkStateReceiver!!.addListener(this)
         context!!.registerReceiver(networkStateReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
 
-        spotDialog = AVLoadingDialog(context!!)
+//        spotDialog = AVLoadingDialog(context!!)
 
         session = SessionManagment(context!!)
         session!!.checkLogin()
@@ -382,7 +382,7 @@ class MainFragment : Fragment(), NetworkStateReceiver.NetworkStateReceiverListen
     }
 
     private fun showNews() {
-        spotDialog!!.show()
+//        spotDialog!!.show()
         val client: OkHttpClient = OkHttpClient.Builder().addInterceptor(object : Interceptor {
             override fun intercept(chain: Interceptor.Chain?): okhttp3.Response {
                 val newRequest = chain!!.request().newBuilder().addHeader("Authorization", "bearer $user_token").build()
@@ -396,13 +396,13 @@ class MainFragment : Fragment(), NetworkStateReceiver.NetworkStateReceiverListen
         val call = apiService.getNews(1)
         call.enqueue(object : Callback<GetAllNewsModel> {
             override fun onFailure(call: Call<GetAllNewsModel>, t: Throwable) {
-                spotDialog!!.dismiss()
+//                spotDialog!!.dismiss()
 //                Toast.makeText(context!!, "No Internet Connection", Toast.LENGTH_SHORT).show()
             }
 
             override fun onResponse(call: Call<GetAllNewsModel>, response: Response<GetAllNewsModel>) {
+//                spotDialog!!.dismiss()
                 if (response.code() == 401) {
-                    spotDialog!!.dismiss()
                     session!!.logoutUser()
                     Toast.makeText(context!!, "Session Out", Toast.LENGTH_LONG).show()
                     startActivity(Intent(context!!, LoginActivity::class.java))
@@ -410,12 +410,12 @@ class MainFragment : Fragment(), NetworkStateReceiver.NetworkStateReceiverListen
                 } else {
                     val mnews = response.body()
                     if (mnews != null) {
-                        spotDialog!!.dismiss()
+//                        spotDialog!!.dismiss()
                         newsList!!.clear()
                         newsList!!.addAll(mnews.data.data!!)
                         neFilterSerch.notifyDataSetChanged()
                     } else {
-                        spotDialog!!.dismiss()
+//                        spotDialog!!.dismiss()
                         Toast.makeText(context!!, "Downloading News Error", Toast.LENGTH_SHORT).show()
 
                     }
