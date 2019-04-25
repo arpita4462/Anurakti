@@ -1,8 +1,5 @@
 package com.gmediasolutions.anurakti.helpsupport
 
-import android.animation.Animator
-import android.animation.ObjectAnimator
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
@@ -14,7 +11,7 @@ import com.gmediasolutions.anurakti.R
 import kotlinx.android.synthetic.main.custom_toolbar.*
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
-import com.gmediasolutions.anurakti.socialmedia.UserSocialActivity
+import com.gmediasolutions.anurakti.menuoptions.ContactUsActivity
 
 
 class HelpSupportActivity : BaseActivity() {
@@ -52,7 +49,7 @@ class HelpSupportActivity : BaseActivity() {
             supportActionBar!!.setDisplayShowHomeEnabled(true)
             my_toolbar.setNavigationOnClickListener(object : View.OnClickListener {
                 override fun onClick(v: View) {
-                    startActivity(Intent(applicationContext, MainActivity::class.java))
+                    startActivity(Intent(this@HelpSupportActivity, MainActivity::class.java))
                     finish()
                 }
             })
@@ -69,10 +66,33 @@ class HelpSupportActivity : BaseActivity() {
         YoYo.with(Techniques.StandUp).duration(1000).playOn(item6Layout)
 
         item1Layout!!.setOnClickListener {
-            startActivity(Intent(this@HelpSupportActivity, UserSocialActivity::class.java))
+            val singupintent = Intent(this@HelpSupportActivity, FeeedbackActivity::class.java)
+            singupintent.putExtra("feedback_type", "suggestions")
+            startActivity(singupintent)
+            finish()
         }
         item2Layout!!.setOnClickListener {
-            startActivity(Intent(this@HelpSupportActivity, FeeedbackActivity::class.java))
+            val singupintent = Intent(this@HelpSupportActivity, FeeedbackActivity::class.java)
+            singupintent.putExtra("feedback_type", "feedback")
+            startActivity(singupintent)
+            finish()
+        }
+        item3Layout!!.setOnClickListener {
+            val singupintent = Intent(this@HelpSupportActivity, ComplaintsActivity::class.java)
+            singupintent.putExtra("feedback_type", "assistance")
+            startActivity(singupintent)
+            finish()
+        }
+        item4Layout!!.setOnClickListener {
+            val singupintent = Intent(this@HelpSupportActivity, ComplaintsActivity::class.java)
+            singupintent.putExtra("feedback_type", "complaints")
+            startActivity(singupintent)
+            finish()
+        }
+        item5Layout!!.setOnClickListener {
+            val singupintent = Intent(this@HelpSupportActivity, ContactUsActivity::class.java)
+            startActivity(singupintent)
+            finish()
         }
 
     }

@@ -103,11 +103,11 @@ class TimelineSingleImageAdapter(
                     .into(itemView.user_pic_comrv)
 
             }
-            /*     if (comment.profilePic.equals("null")) {
+                 if (comment.profilePic.equals("null")) {
                      itemView.user_pic_comrv.visibility=View.GONE
-                 }else {*/
+                 }else {
             itemView.comment_rv.setText(comment.comment)
-//            }
+            }
             itemView.commenttime_rv.text = comment.postingTime
 
             if (current_userID.equals(comment.userId)) {
@@ -121,7 +121,6 @@ class TimelineSingleImageAdapter(
                 itemView.commentdone_rv.visibility = View.GONE
             }
 
-/*
             itemView.commentdelete_rv.setOnClickListener {
                 deletecomment(
                     comment.commentId,
@@ -131,7 +130,6 @@ class TimelineSingleImageAdapter(
                     current_timelinetext
                 )
             }
-*/
             itemView.commentedit_rv.setOnClickListener {
                 itemView.comment_rv.isEnabled = true
                 itemView.comment_rv.isClickable = true
@@ -151,7 +149,7 @@ class TimelineSingleImageAdapter(
             }
         }
 
-/*
+
         private fun deletecomment(
             commentId: String?,
             current_user_token: String?,
@@ -199,7 +197,7 @@ class TimelineSingleImageAdapter(
                 }
             })
         }
-*/
+
 
         private fun editcommentfun(commentId: String?, current_user_token: String?, editcomment: EditTimelineRequest) {
 

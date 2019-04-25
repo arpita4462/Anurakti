@@ -25,6 +25,8 @@ import com.gmediasolutions.anurakti.R
 import com.gmediasolutions.anurakti.base.LoginActivity
 import com.gmediasolutions.anurakti.model.ApiReturn
 import com.gmediasolutions.anurakti.model.BlogModel.AddBlogRequest
+import com.gmediasolutions.anurakti.model.BlogModel.AddBlogResponse
+import com.gmediasolutions.anurakti.model.BlogModel.AddBlogResponseData
 import com.gmediasolutions.anurakti.model.UserSocialModel.TimelineReturn
 import kotlinx.android.synthetic.main.activity_add_post.*
 import kotlinx.android.synthetic.main.custom_toolbar.*
@@ -151,15 +153,15 @@ class AddBlogActivity : BaseActivity() {
 
         val postUser = apiServiceuser.addBlog(part!!, postTitile!!, postBody!!)
 
-        postUser.enqueue(object : Callback<ApiReturn> {
+        postUser.enqueue(object : Callback<AddBlogResponse> {
 
-            override fun onFailure(call: Call<ApiReturn>, t: Throwable) {
+            override fun onFailure(call: Call<AddBlogResponse>, t: Throwable) {
                 spotDialog!!.dismiss()
                 Toast.makeText(this@AddBlogActivity, "No Internet Connection", Toast.LENGTH_SHORT).show()
 
             }
 
-            override fun onResponse(call: Call<ApiReturn>, response: Response<ApiReturn>) {
+            override fun onResponse(call: Call<AddBlogResponse>, response: Response<AddBlogResponse>) {
                 if (response.code() == 401) {
                     spotDialog!!.dismiss()
                     session!!.logoutUser()

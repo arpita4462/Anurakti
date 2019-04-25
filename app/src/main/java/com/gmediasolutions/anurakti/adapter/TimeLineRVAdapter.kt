@@ -126,7 +126,7 @@ class TimeLineRVAdapter(
             }
             itemView.btn_like.setOnClickListener {
                 val likepost = LikeRequest(userId = userID, timelineId = timelineIds!!)
-//                LikePost(likepost,user_token,timelineIds!!)
+                LikePost(likepost,user_token,timelineIds!!)
 
             }
             itemView.delete_img.setOnClickListener {
@@ -143,7 +143,7 @@ class TimeLineRVAdapter(
         }
 
 
-        /*
+
                 private fun LikePost(likepost: LikeRequest, user_token: String, timelineIds: String) {
                     val requestBody = HashMap<String, LikeRequest>()
                     requestBody.clear()
@@ -177,7 +177,7 @@ class TimeLineRVAdapter(
                         }
                     })
                 }
-        */
+
         private fun getcountlike(timelineIds: String?) {
             val client: OkHttpClient = OkHttpClient.Builder().addInterceptor(object : Interceptor {
                 override fun intercept(chain: Interceptor.Chain?): okhttp3.Response {

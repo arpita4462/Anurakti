@@ -64,9 +64,9 @@
     <!--Internet connection-->
     <string name="connect_internet">Connected to Internet</string>
     <string name="sorry_nointernet">Sorry! Not connected to internet</string>
-    <!--<string name="base_url">http://myanurakti.com/</string>-->
+    <string name="base_url">http://myanurakti.com/</string>
     <!--<string name="base_url">http://daivajnyabrahmin.com/</string>-->
-    <string name="base_url">http://ec2-3-14-27-99.us-east-2.compute.amazonaws.com/</string>
+    <!--<string name="base_url">http://ec2-3-14-27-99.us-east-2.compute.amazonaws.com/</string>-->
     <!--<string name="api_base_url">"http://localhost:8080/"</string>-->
     <string name="more">More</string>
 
@@ -241,7 +241,7 @@
     <string name="j_a_w_a_n_s">J A W A N S</string>
     <string name="a_n_u_r_a_k_t_i">M y   A n u r a k t i</string>
     <string name="home">Home</string>
-    <string name="suggetion">Suggetions</string>
+    <string name="suggetion">Suggestions</string>
     <string name="assistance">Assistance</string>
     <string name="complients">complaints</string>
     <string name="supports">Supports</string>
@@ -256,9 +256,10 @@
     <string name="country">Country</string>
     <string name="state">State</string>
     <string name="tap_to_reload">Tap to Reload</string>
-    <string name="post_title">Blog Titile</string>
+    <string name="post_title">Blog Title</string>
     <string name="army">Army</string>
     <string name="civil">Civilian</string>
+    <string name="hint_sub">Subject</string>
 
 
     <string-array name="spinner_gender">

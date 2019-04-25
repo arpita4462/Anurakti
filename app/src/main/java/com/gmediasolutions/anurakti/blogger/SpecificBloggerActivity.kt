@@ -29,6 +29,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import android.support.v4.app.ActivityCompat
 import android.util.Base64
 import com.gmediasolutions.anurakti.model.ApiReturn
+import com.gmediasolutions.anurakti.model.BlogModel.AddBlogResponse
 import com.gmediasolutions.anurakti.model.BlogModel.SpecificBlogModel
 import kotlinx.android.synthetic.main.activity_specific_blogger.*
 import okhttp3.*
@@ -207,15 +208,15 @@ class SpecificBloggerActivity : BaseActivity() {
 
         val postUser = apiServiceuser.updateBlog(user_id!!,part!!, postTitile!!, postBody!!)
 
-        postUser.enqueue(object : Callback<ApiReturn> {
+        postUser.enqueue(object : Callback<AddBlogResponse> {
 
-            override fun onFailure(call: Call<ApiReturn>, t: Throwable) {
+            override fun onFailure(call: Call<AddBlogResponse>, t: Throwable) {
                 spotDialog!!.dismiss()
                 Toast.makeText(this@SpecificBloggerActivity, "No Internet Connection", Toast.LENGTH_SHORT).show()
 
             }
 
-            override fun onResponse(call: Call<ApiReturn>, response: Response<ApiReturn>) {
+            override fun onResponse(call: Call<AddBlogResponse>, response: Response<AddBlogResponse>) {
                 if (response.code() == 401) {
                     spotDialog!!.dismiss()
                     session!!.logoutUser()

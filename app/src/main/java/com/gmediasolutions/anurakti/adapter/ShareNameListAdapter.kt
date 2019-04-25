@@ -1,16 +1,31 @@
 package com.gmediasolutions.anurakti.adapter
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
+import android.widget.Toast
+import com.gmediasolutions.anurakti.ApiInterface
+import com.gmediasolutions.anurakti.R
+import com.gmediasolutions.anurakti.base.LoginActivity
+import com.gmediasolutions.anurakti.model.ApiReturn
 import com.gmediasolutions.anurakti.model.UserSocialModel.GetFriendModelData
 import com.gmediasolutions.anurakti.model.UserSocialModel.ShareFrndRequest
+import com.gmediasolutions.anurakti.socialmedia.FriendsSocialActivity
 import kotlinx.android.synthetic.main.listname_rv_view.view.*
+import okhttp3.Interceptor
+import okhttp3.OkHttpClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.ArrayList
 
 /**
@@ -67,13 +82,13 @@ class ShareNameListAdapter(
                 itemView.likef_name.text = frindlists.firstName + " " + frindlists.lastName
             }
             itemView.setOnClickListener {
-//                val sharecmmt = ShareFrndRequest(frindlists.friendId!!, userId = userID)
-//                sharePost(sharecmmt,timelineIds,user_token,frindlists.friendId!!)
+                val sharecmmt = ShareFrndRequest(frindlists.friendId!!, userId = userID)
+                sharePost(sharecmmt,timelineIds,user_token,frindlists.friendId!!)
             }
 
         }
 
-/*
+
         fun sharePost(sharecmmt: ShareFrndRequest, timelineId: String?, user_token: String, friendId: String) {
             val requestBody = HashMap<String, ShareFrndRequest>()
             requestBody.clear()
@@ -84,12 +99,13 @@ class ShareNameListAdapter(
                     return chain.proceed(newRequest)
                 }
             }).build()
-            val retrofitobjectf = Retrofit.Builder().client(client).baseUrl(itemView.context.getString(R.string.base_url)).addConverterFactory(GsonConverterFactory.create()).build()
+            val retrofitobjectf = Retrofit.Builder().client(client).baseUrl(itemView.context.getString(R.string.base_url)).addConverterFactory(
+                GsonConverterFactory.create()).build()
             val apiServicef = retrofitobjectf.create(ApiInterface::class.java)
             val call = apiServicef.shareTimelineInFriendProfile(timelineId!!,requestBody)
             call.enqueue(object : Callback<ApiReturn> {
                 override fun onFailure(call: Call<ApiReturn>, t: Throwable) {
-                    val clickintent = Intent(itemView.context, FriendPrfileActivity::class.java)
+                    val clickintent = Intent(itemView.context, FriendsSocialActivity::class.java)
                     clickintent.putExtra("frnd_id", friendId)
                     itemView.context.startActivity(clickintent)
                     Toast.makeText(itemView.context, "No Internet Connection", Toast.LENGTH_SHORT).show()
@@ -109,7 +125,7 @@ class ShareNameListAdapter(
                 }
             })
         }
-*/
+
 
     }
 

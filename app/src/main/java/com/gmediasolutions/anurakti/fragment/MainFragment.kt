@@ -146,11 +146,15 @@ class MainFragment : Fragment(), NetworkStateReceiver.NetworkStateReceiverListen
                     sliderShow!!.visibility = View.VISIBLE
 
                     val sliderImages = ArrayList<String>()
-                    sliderImages.add(mproductlist.data.get(0).url)
-                    sliderImages.add(mproductlist.data.get(1).url)
-                    sliderImages.add(mproductlist.data.get(2).url)
-                    sliderImages.add(mproductlist.data.get(3).url)
-                    sliderImages.add(mproductlist.data.get(4).url)
+                    try {
+                        sliderImages.add(mproductlist.data.get(0).url)
+                        sliderImages.add(mproductlist.data.get(1).url)
+                        sliderImages.add(mproductlist.data.get(2).url)
+                        sliderImages.add(mproductlist.data.get(3).url)
+                        sliderImages.add(mproductlist.data.get(4).url)
+                    }catch (e:Exception){
+
+                    }
 
 
                     for (s in sliderImages) {

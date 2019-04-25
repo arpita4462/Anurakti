@@ -18,8 +18,7 @@ import com.gmediasolutions.anurakti.base.MainActivity
 import com.gmediasolutions.anurakti.R
 import com.gmediasolutions.anurakti.model.ApiReturn
 import com.gmediasolutions.anurakti.model.SupportModel.ComplaintModel
-import com.gmediasolutions.anurakti.model.SupportModel.FeedbackModelData
-import kotlinx.android.synthetic.main.activity_feedback.*
+import kotlinx.android.synthetic.main.activity_complian.*
 import kotlinx.android.synthetic.main.custom_toolbar.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -28,9 +27,12 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-class FeeedbackActivity : BaseActivity() {
+class ComplaintsActivity : BaseActivity() {
     var listState: Parcelable? = null
     private var subject: String? = null
+    private var name: String? = null
+    private var email: String? = null
+    private var mobile: String? = null
     private var feedback: String? = null
     private var feedbackType: String? = null
     private var feedbackIntent: String? = null
@@ -38,17 +40,17 @@ class FeeedbackActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_feedback)
+        setContentView(R.layout.activity_complian)
 
         feedbackIntent = intent.getStringExtra("feedback_type")
 
 
-        if (feedbackIntent.equals("feedback")){
-            type_tv.text="Feedback"
-            feedbackType="feedback"
-        }else if (feedbackIntent.equals("suggestions")){
-            type_tv.text="Suggestions"
-            feedbackType="suggestions"
+        if (feedbackIntent.equals("assistance")){
+            type_tv.text="Assistance"
+            feedbackType="assistance"
+        }else if (feedbackIntent.equals("complaints")){
+            type_tv.text="Complaints"
+            feedbackType="complaints"
         }
 
         setupToolbar()
@@ -59,10 +61,13 @@ class FeeedbackActivity : BaseActivity() {
         submit.setOnClickListener {
             subject = et_subject.getText().toString()
             feedback = et_feedback.getText().toString()
+            name = et_name.getText().toString()
+            mobile = et_mobile.getText().toString()
+            email = et_email.getText().toString()
 
 
             if (validateFeedback() && validateSubject()) {
-                val detail = ComplaintModel(subject!!,feedback!!,"","","",feedbackType!!)
+                val detail = ComplaintModel(subject!!,feedback!!,name!!,mobile!!,email!!,feedbackType!!)
                 saveDetail(detail)
             } else {
 
@@ -87,7 +92,7 @@ class FeeedbackActivity : BaseActivity() {
 
             override fun onFailure(call: Call<ApiReturn>, t: Throwable) {
                 Log.i("response_fail", t.localizedMessage)
-                Toast.makeText(this@FeeedbackActivity, "Registration Error", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@ComplaintsActivity, "Registration Error", Toast.LENGTH_LONG).show()
             }
 
             override fun onResponse(call: Call<ApiReturn>, response: Response<ApiReturn>) {
@@ -96,13 +101,13 @@ class FeeedbackActivity : BaseActivity() {
                 Log.i("response_succes_body", response.body().toString())
                 if (response.isSuccessful) {
 
-                    Toast.makeText(this@FeeedbackActivity, "Thank you!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@ComplaintsActivity, "Thank you!", Toast.LENGTH_LONG).show()
 
-                    val singupintent = Intent(this@FeeedbackActivity, HelpSupportActivity::class.java)
+                    val singupintent = Intent(this@ComplaintsActivity, HelpSupportActivity::class.java)
                     startActivity(singupintent)
                     finish()
                 } else {
-                        Toast.makeText(this@FeeedbackActivity, "Something went wrong.", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@ComplaintsActivity, "Something went wrong.", Toast.LENGTH_LONG).show()
 
                 }
 
@@ -195,6 +200,6 @@ class FeeedbackActivity : BaseActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        startActivity(Intent(this@FeeedbackActivity, HelpSupportActivity::class.java))
+        startActivity(Intent(this@ComplaintsActivity, HelpSupportActivity::class.java))
     }
 }

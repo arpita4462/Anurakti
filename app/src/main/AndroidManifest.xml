@@ -31,6 +31,9 @@
         <activity android:name=".base.LoginActivity"/>
         <activity android:name=".base.MainActivity"/>
         <activity android:name=".base.RegisterActivity"/>
+        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+                android:theme="@style/Base.Theme.AppCompat"
+                android:screenOrientation="portrait" />
         <activity android:name=".BaseActivity"/>
         <activity android:name=".socialmedia.UserSocialActivity"
                   android:theme="@style/AppTheme.NoActionBar"/>
@@ -52,6 +55,7 @@
         <activity android:name=".blogger.AddBlogActivity"/>
         <activity android:name=".helpsupport.HelpSupportActivity"/>
         <activity android:name=".helpsupport.FeeedbackActivity"/>
+        <activity android:name=".helpsupport.ComplaintsActivity"/>
         <activity android:name=".vendor.GetAllVendorsActivity"/>
     </application>
 
