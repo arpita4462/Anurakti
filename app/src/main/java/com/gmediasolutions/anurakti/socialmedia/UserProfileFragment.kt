@@ -165,6 +165,7 @@ class UserProfileFragment : Fragment(), NetworkStateReceiver.NetworkStateReceive
         tv_editProfile!!.setOnClickListener {
             isfieldEnabled(true)
             btn_update!!.visibility = View.VISIBLE
+            aboutus_firstNames!!.requestFocus()
         }
         btn_update!!.setOnClickListener {
             isfieldEnabled(false)
@@ -397,12 +398,14 @@ class UserProfileFragment : Fragment(), NetworkStateReceiver.NetworkStateReceive
 
                             Glide.with(context!!)
                                 .load(userdetails.data.get(0).profilePic)
+                                .placeholder(R.drawable.noimage)
                                 .centerCrop()
                                 .into(profile_IV_F)
 
                         }
                         if (userdetails.data.get(0).coverPic.toString().isNotEmpty()) {
                             Glide.with(context!!).load(userdetails.data.get(0).coverPic)
+                                .placeholder(R.drawable.noimage)
                                 .centerCrop()
                                 .into(coverpic_f)
 

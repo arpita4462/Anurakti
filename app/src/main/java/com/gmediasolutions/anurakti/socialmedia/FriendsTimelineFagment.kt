@@ -566,13 +566,16 @@ class FriendsTimelineFagment : Fragment(), NetworkStateReceiver.NetworkStateRece
                   if (mproductlist != null) {
                       progressBart!!.visibility = View.GONE
                       Glide.with(context!!).load(mproductlist.data.get(0).profilePic)
+                          .placeholder(R.drawable.noimage)
                           .centerCrop()
                           .into(post_frnd_pic)
                       Glide.with(context!!).load(mproductlist.data.get(0).profilePic)
+                          .placeholder(R.drawable.noimage)
                           .centerCrop()
                           .into(profile_imageView)
                       Glide.with(context!!).load(mproductlist.data.get(0).coverPic)
                           .centerCrop()
+                          .placeholder(R.drawable.noimage)
                           .placeholder(R.color.light_grey)
                           .into(coverPics)
                       if (mproductlist.data.get(0).lastName.toString().equals("null")) {

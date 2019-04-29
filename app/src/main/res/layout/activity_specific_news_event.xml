@@ -47,7 +47,7 @@
             android:id="@+id/ne_imgone"
             android:layout_width="match_parent"
             android:transitionName="@string/transiton_news_image"
-            android:layout_height="wrap_content"
+            android:layout_height="250dp"
             android:layout_margin="10dp" />
 
 <!--
@@ -103,6 +103,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
+            android:layout_marginBottom="16dp"
             android:textColor="@color/black"
             android:textStyle="normal"/>
 <!--

@@ -128,7 +128,8 @@ class CoverImageOneViewActivity : BaseActivity() {
                             timeline_ProgressBar.visibility = View.GONE
                             Glide.with(this@CoverImageOneViewActivity)
                                     .load(getpicImage)
-                                    .thumbnail(0.5f)
+                                .placeholder(R.drawable.noimage)
+                                .thumbnail(0.5f)
                                     .crossFade()
                                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                                     .into(image_one_iv)

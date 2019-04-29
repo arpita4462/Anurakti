@@ -23,7 +23,7 @@ interface ApiInterface {
     //    created api in spring-boot
     @Headers("Content-Type: application/json")
     @POST("/rest/users/createUser")
-    fun createUser(@Body registerModel:RegisterModel): Call<RegisterModel>
+    fun createUser(@Body registerModel: RegisterModel): Call<RegisterModel>
 
     @Headers("Content-Type: application/json")
     @POST("/myboxapp/rest/api/test")
@@ -119,7 +119,8 @@ interface ApiInterface {
 
     @DELETE("/api/1.0/deleteTimelineComment/{commentId}")
     fun deleteTimelineComment(@Path("commentId") commentId: String): Call<ApiReturn>
-//
+
+    //
     @Headers("Content-Type: application/json")
     @POST("/api/1.0/deleteTimeline/{timelineId}")
     fun deleteTimeline(@Path("timelineId") timelineId: String): Call<ApiReturn>
@@ -252,24 +253,36 @@ interface ApiInterface {
 
     @Multipart
     @POST("/api/1.0/blog/store")
-    fun addBlog(@Part pic: MultipartBody.Part,@Part("subject") subject: RequestBody,@Part("body") body: RequestBody): Call<AddBlogResponse>
+    fun addBlogwithoutImage(@Part("subject") subject: RequestBody, @Part("body") body: RequestBody): Call<AddBlogResponse>
+
+    @Multipart
+    @POST("/api/1.0/blog/store")
+    fun addBlogwithImage(@Part pic: MultipartBody.Part, @Part("subject") subject: RequestBody, @Part("body") body: RequestBody): Call<AddBlogResponse>
 
 
     @Multipart
-    @POST("/api/1.0/update/{id}")
-    fun updateBlog(@Path("id") id: String,@Part pic: MultipartBody.Part,@Part("subject") subject: RequestBody,@Part("body") body: RequestBody): Call<AddBlogResponse>
+    @POST("/api/1.0/blog/update/{id}")
+    fun updateBlogwithImage(
+        @Path("id") id: Int, @Part pic: MultipartBody.Part, @Part("subject") subject: RequestBody, @Part(
+            "body"
+        ) body: RequestBody
+    ): Call<AddBlogResponse>
+
+    @Multipart
+    @POST("/api/1.0/blog/update/{id}")
+    fun updateBlog(@Path("id") id: Int, @Part("subject") subject: RequestBody, @Part("body") body: RequestBody): Call<AddBlogResponse>
 
     @GET("/api/1.0/blog/{id}")
     fun getBlogbyId(@Path("id") id: Int): Call<SpecificBlogModel>
 
-     @DELETE("/api/1.0/blog/{id}")
-    fun deleteBlogbyId(): Call<ApiReturn>
+    @DELETE("/api/1.0/blog/{id}")
+    fun deleteBlogbyId(@Path("id") id: Int): Call<ApiReturn>
 
     @GET("/api/1.0/vendor")
     fun getVendors(): Call<VendorsModel>
 
     @Headers("Content-Type: application/json")
     @POST("/api/1.0/storefeedback")
-    fun addcomplaints(@Body data: HashMap<String,ComplaintModel>): Call<ApiReturn>
+    fun addcomplaints(@Body data: HashMap<String, ComplaintModel>): Call<ApiReturn>
 
 }

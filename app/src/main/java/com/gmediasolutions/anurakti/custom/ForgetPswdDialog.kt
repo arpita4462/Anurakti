@@ -10,7 +10,11 @@ import android.widget.EditText
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
+import com.gmediasolutions.anurakti.ApiInterface
 import com.gmediasolutions.anurakti.R
+import com.gmediasolutions.anurakti.model.ApiReturn
+import com.gmediasolutions.anurakti.model.ForgetPassRequest
 import com.wang.avi.AVLoadingIndicatorView
 import retrofit2.Call
 import retrofit2.Callback
@@ -37,8 +41,9 @@ class ForgetPswdDialog(internal var mycontext: Context) : Dialog(mycontext) {
         progressBar = findViewById(R.id.progressBar) as AVLoadingIndicatorView
         inputLayoutName = findViewById(R.id.input_layout_frg_id) as TextInputLayout
 
+        progressBar!!.visibility = View.GONE
 
-/*
+
         btn_reset_password!!.setOnClickListener(View.OnClickListener {
             val email = et_email!!.text.toString().trim { it <= ' ' }
 
@@ -71,6 +76,7 @@ class ForgetPswdDialog(internal var mycontext: Context) : Dialog(mycontext) {
                     val loginresponse=response.body()
                     if(loginresponse!=null) {
                         if (response.isSuccessful) {
+                            dismiss()
                             progressBar!!.visibility = View.GONE
                             Toast.makeText(mycontext, "We have sent you instructions to reset your password!", Toast.LENGTH_SHORT).show()
 
@@ -90,7 +96,7 @@ class ForgetPswdDialog(internal var mycontext: Context) : Dialog(mycontext) {
 
             })
         })
-*/
+
 
     }
 

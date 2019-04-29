@@ -17,8 +17,10 @@ import com.gmediasolutions.anurakti.BaseActivity
 import com.gmediasolutions.anurakti.PaginationScrollListener
 import com.gmediasolutions.anurakti.R
 import com.gmediasolutions.anurakti.adapter.VendorsRVAdapter
+import com.gmediasolutions.anurakti.base.MainActivity
 import com.gmediasolutions.anurakti.model.Vendors.VendorsModel
 import com.gmediasolutions.anurakti.model.Vendors.VendorsModelData
+import kotlinx.android.synthetic.main.custom_toolbar.*
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Call
@@ -53,6 +55,7 @@ class GetAllVendorsActivity : BaseActivity() {
 
         adapter = VendorsRVAdapter(this)
 
+        setupToolbar()
         linearLayoutManager = GridLayoutManager(this, 2)
         rv!!.layoutManager = linearLayoutManager
 
@@ -129,6 +132,23 @@ class GetAllVendorsActivity : BaseActivity() {
 
     }
 
+    fun setupToolbar() {
+
+
+//      setup toolbar
+        if (my_toolbar != null) {
+            setSupportActionBar(my_toolbar)
+
+            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+            supportActionBar!!.setDisplayShowHomeEnabled(true)
+            my_toolbar.setNavigationOnClickListener(object : View.OnClickListener {
+                override fun onClick(v: View) {
+                    startActivity(Intent(applicationContext, MainActivity::class.java))
+                    finish()
+                }
+            })
+        }
+    }
 
     private fun fetchResults(response: Response<VendorsModel>): List<VendorsModelData> {
         val topRatedBlogs = response.body()

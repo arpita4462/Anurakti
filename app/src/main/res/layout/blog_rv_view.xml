@@ -21,7 +21,6 @@
             android:id="@+id/photo_iv"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/blogger"
             android:padding="5dp"/>
     <LinearLayout
             android:id="@+id/layout_item2"

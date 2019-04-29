@@ -334,9 +334,11 @@ class FriendsProfileFragment : Fragment(), NetworkStateReceiver.NetworkStateRece
                         spotdialog!!.dismiss()
                         progressBarF!!.visibility = View.GONE
                         Glide.with(context!!).load(userdetails.data.get(0).profilePic)
+                            .placeholder(R.drawable.noimage)
                             .centerCrop()
                             .into(profile_IV_F)
                         Glide.with(context!!).load(userdetails.data.get(0).coverPic)
+                            .placeholder(R.drawable.noimage)
                             .centerCrop()
                             .into(coverpic_f)
                         if (userdetails.data.get(0).firstName.toString().equals("null")) {

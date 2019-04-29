@@ -12,6 +12,7 @@ import android.widget.Filter
 import android.widget.Filterable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.gmediasolutions.anurakti.R
 import com.gmediasolutions.anurakti.model.B2BModel.ProductModelData
 import com.gmediasolutions.anurakti.b2b.SpecificB2BActivity
 import kotlinx.android.synthetic.main.b2b_rv_view.view.*
@@ -60,6 +61,7 @@ class B2BProductAdapter(
             itemView.b2b_contact.text = b2b.contactNumber
             Glide.with(itemView.context!!).load(b2b.image)
 //                    .thumbnail(0.5f)
+                .placeholder(R.drawable.noimage)
                 .centerCrop()
 //                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(itemView.b2b_iv)

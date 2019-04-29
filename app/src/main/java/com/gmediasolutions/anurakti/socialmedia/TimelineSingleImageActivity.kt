@@ -170,7 +170,8 @@ class TimelineSingleImageActivity : BaseActivity() {
                             tv_text_one_view.text = gettimelinetext
                             Glide.with(this@TimelineSingleImageActivity)
                                 .load(gettimelineImage)
-                                .centerCrop()
+                                .placeholder(R.drawable.noimage)
+//                                .centerCrop()
                                 .into(image_one_iv)
 
                             if (commentRecycleView != null) {

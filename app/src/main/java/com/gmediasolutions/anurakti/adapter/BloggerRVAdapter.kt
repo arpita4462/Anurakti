@@ -117,6 +117,7 @@ class BloggerRVAdapter(private val context: Context) : RecyclerView.Adapter<Recy
                     .diskCacheStrategy(DiskCacheStrategy.ALL)   // cache both original & resized image
                     .centerCrop()
                     .crossFade()
+                    .placeholder(R.drawable.noimage)
                     .into(movieVH.mPBlogImg)
             }
 

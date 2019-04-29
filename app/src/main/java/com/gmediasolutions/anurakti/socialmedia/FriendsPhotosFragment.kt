@@ -266,6 +266,7 @@ class FriendsPhotosFragment : Fragment(), NetworkStateReceiver.NetworkStateRecei
 
             Glide.with(context!!)
                 .load(image)
+                .placeholder(R.drawable.noimage)
                 .centerCrop()
                 .into(itemHolder.imageView)
             itemHolder.rootView.setOnClickListener {
@@ -312,6 +313,7 @@ class FriendsPhotosFragment : Fragment(), NetworkStateReceiver.NetworkStateRecei
 
             Glide.with(context!!)
                 .load(image)
+                .placeholder(R.drawable.noimage)
                 .centerCrop()
                 .into(itemHolder.imageView)
             itemHolder.rootView.setOnClickListener {

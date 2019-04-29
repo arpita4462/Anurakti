@@ -61,7 +61,8 @@ class CoverImageOneViewAdapter(val commentList: List<CoverPicCommentModelData>, 
             itemView.comment_rv.isClickable = false
             Glide.with(itemView.context!!).load(comment.profilePic)
                     .thumbnail(0.5f)
-                    .crossFade()
+                .placeholder(R.drawable.noimage)
+                .crossFade()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(itemView.user_pic_comrv)
 

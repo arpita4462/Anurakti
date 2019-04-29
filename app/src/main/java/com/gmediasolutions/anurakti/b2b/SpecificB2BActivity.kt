@@ -181,6 +181,7 @@ class SpecificB2BActivity : BaseActivity() {
                             b2b_delete.visibility = View.GONE
                         }
                         Glide.with(this@SpecificB2BActivity).load(b2bdata.data.get(0).image)
+                            .placeholder(R.drawable.noimage)
                             .centerCrop()
                             .into(b2b_displayivs)
                         b2b_productnames.setText(b2bdata.data.get(0).productName)

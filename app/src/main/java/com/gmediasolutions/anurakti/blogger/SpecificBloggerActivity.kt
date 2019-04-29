@@ -43,6 +43,7 @@ class SpecificBloggerActivity : BaseActivity() {
     private var getblogId: Int? = null
     private var current_user_id: String? = null
     private val SELECT_GALLERY = 300
+    private var blogId: Int? = null
     private var blogImage: String? = null
     private var blogImageUri: Uri? = null
     private var base64img: String? = null
@@ -53,6 +54,7 @@ class SpecificBloggerActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_specific_blogger)
 
+        blog_submits.visibility=View.GONE
         blog_delete.visibility=View.GONE
         blog_edits.visibility=View.GONE
         blog_img.visibility=View.GONE
@@ -74,6 +76,7 @@ class SpecificBloggerActivity : BaseActivity() {
             fieldsenable(true)
             blog_uploadimgs.visibility = View.VISIBLE
             blog_submits.visibility = View.VISIBLE
+            blog_headline_tv.requestFocus()
 
         }
 
@@ -88,18 +91,15 @@ class SpecificBloggerActivity : BaseActivity() {
             if (networkInfo == null) {
                 Toast.makeText(this, "No Internet Connection", Toast.LENGTH_LONG).show()
             } else {
+//                blogImage = blog_img.
 
-                    if (bitmapimage != null) {
-                        val bao = ByteArrayOutputStream()
-                        bitmapimage!!.compress(Bitmap.CompressFormat.JPEG, 90, bao)
-                        val byte = bao.toByteArray()
-                        base64img = Base64.encodeToString(byte, Base64.NO_WRAP)
+//                val bao = ByteArrayOutputStream()
+//                bitmapimage!!.compress(Bitmap.CompressFormat.JPEG, 90, bao)
+//
+//                val byte = bao.toByteArray()
+//                base64img = Base64.encodeToString(byte, Base64.NO_WRAP)
 
-                        updateblogtoDB()
-                    } else {
-                        Toast.makeText(this, "Upload Image", Toast.LENGTH_SHORT).show()
-
-                    }
+                updateblogtoDB()
             }
         }
 
@@ -152,6 +152,7 @@ class SpecificBloggerActivity : BaseActivity() {
                     spotDialog!!.dismiss()
                     val blog = response.body()
                     current_user_id = blog!!.data.blog.user_id.toString()
+                    blogId = blog!!.data.blog.id
                     if (user_id.equals(current_user_id)) {
                         blog_edits.visibility = View.VISIBLE
                         blog_delete.visibility = View.VISIBLE
@@ -163,15 +164,19 @@ class SpecificBloggerActivity : BaseActivity() {
                     tv_blogTime.text =blog!!.data.blog.updated_at
                     blog_headline_tv.setText(blog!!.data.blog.subject.toString())
                     blog_context1.setText(blog!!.data.blog.body)
+//                    if ()
                     Glide.with(this@SpecificBloggerActivity).load(blog.data.blog.user!!.user_pic_id)
                         .centerCrop()
+                        .placeholder(R.drawable.noimage)
                         .into(user_pic)
 
-                    if (blog!!.data.blog.pic.equals("")) {
+
+                    if (blog!!.data.blog.pic==null) {
                         blog_img.visibility = View.GONE
                     } else {
                         blog_img.visibility = View.VISIBLE
                         Glide.with(this@SpecificBloggerActivity).load(blog.data.blog.pic)
+                            .placeholder(R.drawable.noimage)
                             .centerCrop()
                             .into(blog_img)
                     }
@@ -200,14 +205,28 @@ class SpecificBloggerActivity : BaseActivity() {
             .baseUrl(getString(R.string.base_url))
             .build()
         val apiServiceuser = retrofituser.create(ApiInterface::class.java)
-        val file = File(blogImage)
-        val fileReqBody = RequestBody.create(MediaType.parse("image/*"), file)
-        val part = MultipartBody.Part.createFormData("pic", file.getName(), fileReqBody)
-        val postTitile = RequestBody.create(MediaType.parse("text/plain"), blog_headline_tv.text.toString())
-        val postBody = RequestBody.create(MediaType.parse("text/plain"), blog_context1.text.toString())
+        var postUser:Call<AddBlogResponse>
+       if (blogImage!=null) {
+           val file = File(blogImage)
+           val fileReqBody = RequestBody.create(MediaType.parse("image/*"), file)
+           val part = MultipartBody.Part.createFormData("pic", file.getName(), fileReqBody)
+           val postTitile = RequestBody.create(MediaType.parse("text/plain"), blog_headline_tv.text.toString())
+           val postBody = RequestBody.create(MediaType.parse("text/plain"), blog_context1.text.toString())
 
-        val postUser = apiServiceuser.updateBlog(user_id!!,part!!, postTitile!!, postBody!!)
+            postUser = apiServiceuser.updateBlogwithImage(blogId!!, part!!, postTitile!!, postBody!!)
+       }else{
+           val postTitile = RequestBody.create(MediaType.parse("text/plain"), blog_headline_tv.text.toString())
+           val postBody = RequestBody.create(MediaType.parse("text/plain"), blog_context1.text.toString())
+           postUser = apiServiceuser.updateBlog(blogId!!, postTitile!!, postBody!!)
+       }
 
+//        val file = File(blogImage)
+//        val fileReqBody = RequestBody.create(MediaType.parse("image/*"), file)
+//        val part = MultipartBody.Part.createFormData("pic", file.getName(), fileReqBody)
+//        val postTitile = RequestBody.create(MediaType.parse("text/plain"), blog_headline_tv.text.toString())
+//        val postBody = RequestBody.create(MediaType.parse("text/plain"), blog_context1.text.toString())
+
+//        postUser = apiServiceuser.updateBlogwithImage(user_id!!, part!!, postTitile!!, postBody!!)
         postUser.enqueue(object : Callback<AddBlogResponse> {
 
             override fun onFailure(call: Call<AddBlogResponse>, t: Throwable) {
@@ -270,7 +289,7 @@ class SpecificBloggerActivity : BaseActivity() {
             .baseUrl(getString(R.string.base_url))
             .build()
         val apiServiceuser = retrofituser.create(ApiInterface::class.java)
-        val postUser = apiServiceuser.deleteBlogbyId()
+        val postUser = apiServiceuser.deleteBlogbyId(blogId!!)
         postUser.enqueue(object : Callback<ApiReturn> {
 
             override fun onFailure(call: Call<ApiReturn>, t: Throwable) {

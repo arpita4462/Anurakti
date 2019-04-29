@@ -16,9 +16,11 @@ import com.gmediasolutions.anurakti.BaseActivity
 import com.gmediasolutions.anurakti.PaginationScrollListener
 import com.gmediasolutions.anurakti.R
 import com.gmediasolutions.anurakti.adapter.BloggerRVAdapter
+import com.gmediasolutions.anurakti.base.MainActivity
 import com.gmediasolutions.anurakti.model.BlogModel.BlogData
 import com.gmediasolutions.anurakti.model.BlogModel.BloggerModel
 import kotlinx.android.synthetic.main.activity_blog.*
+import kotlinx.android.synthetic.main.custom_toolbar.*
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Call
@@ -51,6 +53,7 @@ class BlogsActivity : BaseActivity() {
         rv = findViewById(R.id.blog_recycleView) as RecyclerView
         progressBar = findViewById(R.id.main_progress) as ProgressBar
 
+        setupToolbar()
         adapter = BloggerRVAdapter(this)
 
         linearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -108,6 +111,23 @@ class BlogsActivity : BaseActivity() {
 
     }
 
+    fun setupToolbar() {
+
+
+//      setup toolbar
+        if (my_toolbar != null) {
+            setSupportActionBar(my_toolbar)
+
+            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+            supportActionBar!!.setDisplayShowHomeEnabled(true)
+            my_toolbar.setNavigationOnClickListener(object : View.OnClickListener {
+                override fun onClick(v: View) {
+                    startActivity(Intent(applicationContext, MainActivity::class.java))
+                    finish()
+                }
+            })
+        }
+    }
 
     private fun loadFirstPage() {
         Log.d(TAG, "loadFirstPage: ")

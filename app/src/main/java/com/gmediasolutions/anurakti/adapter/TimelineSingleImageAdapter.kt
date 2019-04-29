@@ -100,6 +100,7 @@ class TimelineSingleImageAdapter(
                 itemView.user_pic_comrv.visibility = View.VISIBLE
                 Glide.with(itemView.context!!).load(comment.profilePic)
                     .centerCrop()
+                    .placeholder(R.drawable.noimage)
                     .into(itemView.user_pic_comrv)
 
             }

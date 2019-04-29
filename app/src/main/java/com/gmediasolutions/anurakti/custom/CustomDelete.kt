@@ -7,6 +7,8 @@ import android.widget.Toast
 import android.os.Bundle
 import com.gmediasolutions.anurakti.ApiInterface
 import com.gmediasolutions.anurakti.R
+import com.gmediasolutions.anurakti.model.ApiReturn
+import com.gmediasolutions.anurakti.socialmedia.UserSocialActivity
 import kotlinx.android.synthetic.main.custom_delete.*
 import okhttp3.OkHttpClient
 import retrofit2.Call
@@ -33,8 +35,8 @@ class CustomDelete(var mycontext: Context, var user_token: String, private var t
             }.build()
             val retrofitobjectf = Retrofit.Builder().client(client).baseUrl(mycontext.getString(R.string.base_url))
                 .addConverterFactory(GsonConverterFactory.create()).build()
-//            val apiServicef = retrofitobjectf.create(ApiInterface::class.java)
-/*           val call = apiServicef.deleteTimeline(timelineIds)
+            val apiServicef = retrofitobjectf.create(ApiInterface::class.java)
+           val call = apiServicef.deleteTimeline(timelineIds)
 
            call.enqueue(object : Callback<ApiReturn> {
                override fun onFailure(call: Call<ApiReturn>, t: Throwable) {
@@ -52,7 +54,6 @@ class CustomDelete(var mycontext: Context, var user_token: String, private var t
                    }
                }
            })
-*/
         }
 
 

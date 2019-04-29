@@ -94,9 +94,9 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:weightSum="2"
+            android:layout_marginBottom="16dp"
             android:layout_gravity="bottom"
-            android:gravity="bottom"
-           android:layout_marginBottom="5dp" >
+            android:gravity="bottom">
     <EditText
         android:id="@+id/et_post_one_view"
         android:layout_width="match_parent"

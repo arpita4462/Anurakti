@@ -101,6 +101,7 @@ class SpecificNewsEventActivity : BaseActivity() {
                     } else {
                         ne_imgone.visibility = View.VISIBLE
                         Glide.with(this@SpecificNewsEventActivity).load(mnews.data.photos)
+                            .placeholder(R.drawable.noimage)
                             .centerCrop()
                             .into(ne_imgone)
                     }

@@ -79,24 +79,28 @@ class TimeLineRVAdapter(
 
             if (timeline.status.equals("shared")) {
                 Glide.with(itemView.context!!).load(timeline.postUserProfilePic)
+                    .placeholder(R.drawable.noimage)
                     .centerCrop()
                     .into(itemView.user_pic)
 
                 itemView.post_img.visibility = View.VISIBLE
                 Glide.with(itemView.context!!).load(timeline.photos)
-                    .centerCrop()
+                    .placeholder(R.drawable.noimage)
+//                    .centerCrop()
                     .into(itemView.post_img)
                 itemView.tv_timelname.text = timeline.postUserfirstName + " " + timeline.postUserlastName
                 itemView.tv_timeltime.text = timeline.postingTime
                 itemView.tv_postcontent.text = timeline.textContent
             } else {
                 Glide.with(itemView.context!!).load(timeline.profilePic)
+                    .placeholder(R.drawable.noimage)
                     .centerCrop()
                     .into(itemView.user_pic)
 
                 itemView.post_img.visibility = View.VISIBLE
                 Glide.with(itemView.context!!).load(timeline.photos)
-                    .centerCrop()
+                    .placeholder(R.drawable.noimage)
+
                     .into(itemView.post_img)
                 itemView.tv_timelname.text = timeline.firstName + " " + timeline.lastName
                 itemView.tv_timeltime.text = timeline.postingTime
@@ -126,7 +130,7 @@ class TimeLineRVAdapter(
             }
             itemView.btn_like.setOnClickListener {
                 val likepost = LikeRequest(userId = userID, timelineId = timelineIds!!)
-                LikePost(likepost,user_token,timelineIds!!)
+                LikePost(likepost, user_token, timelineIds!!)
 
             }
             itemView.delete_img.setOnClickListener {
@@ -143,40 +147,43 @@ class TimeLineRVAdapter(
         }
 
 
-
-                private fun LikePost(likepost: LikeRequest, user_token: String, timelineIds: String) {
-                    val requestBody = HashMap<String, LikeRequest>()
-                    requestBody.clear()
-                    requestBody.put("data", likepost)
-                    val client: OkHttpClient = OkHttpClient.Builder().addInterceptor(object : Interceptor {
-                        override fun intercept(chain: Interceptor.Chain?): okhttp3.Response {
-                            val newRequest = chain!!.request().newBuilder().addHeader("Authorization", "bearer $user_token").build()
-                            return chain.proceed(newRequest)
-                        }
-                    }).build()
-                    val retrofitobjectf = Retrofit.Builder().client(client).baseUrl(itemView.context.getString(R.string.base_url)).addConverterFactory(GsonConverterFactory.create()).build()
-                    val apiServicef = retrofitobjectf.create(ApiInterface::class.java)
-                    val call = apiServicef.timelineLike(requestBody)
-                    call.enqueue(object : Callback<ApiReturn> {
-                        override fun onFailure(call: Call<ApiReturn>, t: Throwable) {
-                            Toast.makeText(itemView.context, "No Internet Connection", Toast.LENGTH_SHORT).show()
-                        }
-                        override fun onResponse(call: Call<ApiReturn>, response: Response<ApiReturn>) {
-                            if (response.code() == 401) {
-                                Toast.makeText(itemView.context, "Session Out", Toast.LENGTH_LONG).show()
-                                itemView.context.startActivity(Intent(itemView.context, LoginActivity::class.java))
-                                (itemView.context as Activity).finish()
-                            } else {
-                                if (response.isSuccessful) {
-                                    getcountlike(timelineIds)
-                                    getlikeStatus(userID, user_token, timelineIds)
-                                } else {
-                                    Toast.makeText(itemView.context, "Error", Toast.LENGTH_SHORT).show()
-                                }
-                            }
-                        }
-                    })
+        private fun LikePost(likepost: LikeRequest, user_token: String, timelineIds: String) {
+            val requestBody = HashMap<String, LikeRequest>()
+            requestBody.clear()
+            requestBody.put("data", likepost)
+            val client: OkHttpClient = OkHttpClient.Builder().addInterceptor(object : Interceptor {
+                override fun intercept(chain: Interceptor.Chain?): okhttp3.Response {
+                    val newRequest =
+                        chain!!.request().newBuilder().addHeader("Authorization", "bearer $user_token").build()
+                    return chain.proceed(newRequest)
                 }
+            }).build()
+            val retrofitobjectf =
+                Retrofit.Builder().client(client).baseUrl(itemView.context.getString(R.string.base_url))
+                    .addConverterFactory(GsonConverterFactory.create()).build()
+            val apiServicef = retrofitobjectf.create(ApiInterface::class.java)
+            val call = apiServicef.timelineLike(requestBody)
+            call.enqueue(object : Callback<ApiReturn> {
+                override fun onFailure(call: Call<ApiReturn>, t: Throwable) {
+                    Toast.makeText(itemView.context, "No Internet Connection", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onResponse(call: Call<ApiReturn>, response: Response<ApiReturn>) {
+                    if (response.code() == 401) {
+                        Toast.makeText(itemView.context, "Session Out", Toast.LENGTH_LONG).show()
+                        itemView.context.startActivity(Intent(itemView.context, LoginActivity::class.java))
+                        (itemView.context as Activity).finish()
+                    } else {
+                        if (response.isSuccessful) {
+                            getcountlike(timelineIds)
+                            getlikeStatus(userID, user_token, timelineIds)
+                        } else {
+                            Toast.makeText(itemView.context, "Error", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            })
+        }
 
         private fun getcountlike(timelineIds: String?) {
             val client: OkHttpClient = OkHttpClient.Builder().addInterceptor(object : Interceptor {

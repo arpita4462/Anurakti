@@ -23,6 +23,7 @@ import com.gmediasolutions.anurakti.alert.SessionManagment
 import com.gmediasolutions.anurakti.base.LoginActivity
 import com.gmediasolutions.anurakti.menuoptions.AboutUsActivity
 import com.gmediasolutions.anurakti.menuoptions.ContactUsActivity
+import com.gmediasolutions.anurakti.menuoptions.PrivacyPolicyActivity
 import com.gmediasolutions.anurakti.menuoptions.TermsAndConditionActivity
 import com.gmediasolutions.anurakti.model.LoginModel.VerifyEmailModel
 import com.gmediasolutions.anurakti.socialmedia.UserSocialActivity
@@ -88,6 +89,9 @@ open class BaseActivity : AppCompatActivity(), NetworkStateReceiver.NetworkState
             }
             R.id.contact_us -> {
                 startActivity(Intent(this@BaseActivity, ContactUsActivity::class.java))
+            }
+            R.id.privacy_policy -> {
+                startActivity(Intent(this@BaseActivity, PrivacyPolicyActivity::class.java))
             }
             R.id.sign_out -> {
                 logoutUser()

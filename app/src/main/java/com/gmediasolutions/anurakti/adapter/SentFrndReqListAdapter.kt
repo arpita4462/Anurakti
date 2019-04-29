@@ -12,6 +12,7 @@ import android.widget.Filter
 import android.widget.Filterable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.gmediasolutions.anurakti.R
 import com.gmediasolutions.anurakti.model.UserSocialModel.GetFRndReqModelData
 import com.gmediasolutions.anurakti.socialmedia.FriendsSocialActivity
 import kotlinx.android.synthetic.main.frnd_list_name_rv_view.view.*
@@ -62,6 +63,7 @@ class SentFrndReqListAdapter(
                 itemView.frndlist_name.text = frindlists.firstName + " " + frindlists.lastName
             }//            itemView.frndlist_status.text = frindlists.
             Glide.with(itemView.context!!).load(frindlists.profilePic)
+                .placeholder(R.drawable.noimage)
                 .centerCrop()
                 .into(itemView.frndlist_iv)
             itemView.setOnClickListener {

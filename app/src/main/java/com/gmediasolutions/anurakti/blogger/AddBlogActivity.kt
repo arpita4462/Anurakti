@@ -60,7 +60,7 @@ class AddBlogActivity : BaseActivity() {
         setContentView(R.layout.activity_add_post)
 
         setupToolbar()
-
+        post_submit.isEnabled = true
 //        get intent value
         current_user_id = intent.getStringExtra("post_user")
 
@@ -74,6 +74,7 @@ class AddBlogActivity : BaseActivity() {
         }
 
         post_submit.setOnClickListener {
+            post_submit.isEnabled = false
 
 //            val connMgr = applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 //            val networkInfo = connMgr.activeNetworkInfo
@@ -81,30 +82,18 @@ class AddBlogActivity : BaseActivity() {
 //                Toast.makeText(this, "No Internet Connection", Toast.LENGTH_LONG).show()
 //            } else {
 
-                postBody = et_post.text.toString()
-                postTitile = et_postTitle.text.toString()
+            postBody = et_post.text.toString()
+            postTitile = et_postTitle.text.toString()
 
 //                    bitmapimage = (post_iv.drawable as BitmapDrawable).bitmap
-
-                if (postImage != null) {
-                    val bm = BitmapFactory.decodeFile(postImage)
-                    val bao = ByteArrayOutputStream()
-                    bm.compress(Bitmap.CompressFormat.JPEG, 90, bao)
-                    val byte = bao.toByteArray()
-                    base64img = Base64.encodeToString(byte, Base64.NO_WRAP)
-
-                    val addblog = AddBlogRequest(base64img!!, postTitile!!, postBody!!)
-                    addblogtoDB(addblog)
-
-                } else {
-                    if (postTitile.equals("")) {
-                        Toast.makeText(this, "Fill the Details", Toast.LENGTH_LONG).show()
-                    } else {
-                        val addblog = AddBlogRequest(base64img!!, postTitile!!, postBody!!)
-                        addblogtoDB(addblog)
-                    }
-//                }
+            if (postTitile.equals("")) {
+                Toast.makeText(this, "Fill the Details", Toast.LENGTH_LONG).show()
+            } else {
+//                        val addblog = AddBlogRequest(base64img!!, postTitile!!, postBody!!)
+                addblogtoDB()
             }
+//                }
+
         }
 
     }
@@ -126,7 +115,7 @@ class AddBlogActivity : BaseActivity() {
     }
 
 
-    private fun addblogtoDB(savepost: AddBlogRequest) {
+    private fun addblogtoDB() {
         spotDialog!!.show()
 //        val requestBody = HashMap<String, AddBlogRequest>()
 //        requestBody.clear()
@@ -145,18 +134,26 @@ class AddBlogActivity : BaseActivity() {
             .baseUrl(getString(R.string.base_url))
             .build()
         val apiServiceuser = retrofituser.create(ApiInterface::class.java)
-        val file = File(postImage)
-        val fileReqBody = RequestBody.create(MediaType.parse("image/*"), file)
-        val part = MultipartBody.Part.createFormData("pic", file.getName(), fileReqBody)
-        val postTitile = RequestBody.create(MediaType.parse("text/plain"), postTitile)
-        val postBody = RequestBody.create(MediaType.parse("text/plain"), postBody)
+        var postUser:Call<AddBlogResponse>
 
-        val postUser = apiServiceuser.addBlog(part!!, postTitile!!, postBody!!)
+        if (postImage!=null){
+            val file = File(postImage)
+            val fileReqBody = RequestBody.create(MediaType.parse("image/*"), file)
+            val part = MultipartBody.Part.createFormData("pic", file.getName(), fileReqBody)
+            val postTitile = RequestBody.create(MediaType.parse("text/plain"), postTitile)
+            val postBody = RequestBody.create(MediaType.parse("text/plain"), postBody)
+            postUser = apiServiceuser.addBlogwithImage(part!!, postTitile!!, postBody!!)
+        }else{
+            val postTitile = RequestBody.create(MediaType.parse("text/plain"), postTitile)
+            val postBody = RequestBody.create(MediaType.parse("text/plain"), postBody)
+            postUser = apiServiceuser.addBlogwithoutImage(postTitile!!, postBody!!)
+        }
 
         postUser.enqueue(object : Callback<AddBlogResponse> {
 
             override fun onFailure(call: Call<AddBlogResponse>, t: Throwable) {
                 spotDialog!!.dismiss()
+                post_submit.isEnabled = true
                 Toast.makeText(this@AddBlogActivity, "No Internet Connection", Toast.LENGTH_SHORT).show()
 
             }
@@ -171,9 +168,17 @@ class AddBlogActivity : BaseActivity() {
                 } else {
                     if (response.isSuccessful) {
                         spotDialog!!.dismiss()
+                        et_post.setText("")
+                        et_postTitle.setText("")
                         startActivity(Intent(this@AddBlogActivity, BlogsActivity::class.java))
-                        Toast.makeText(this@AddBlogActivity, "Successfully Upload,Wait for admin approve", Toast.LENGTH_SHORT).show()
+                        finish()
+                        Toast.makeText(
+                            this@AddBlogActivity,
+                            "Successfully Upload,Wait for admin approve",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     } else {
+                        post_submit.isEnabled = true
                         spotDialog!!.dismiss()
                         Toast.makeText(this@AddBlogActivity, "Uploading Error", Toast.LENGTH_SHORT).show()
                     }

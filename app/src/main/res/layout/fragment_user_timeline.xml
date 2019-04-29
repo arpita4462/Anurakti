@@ -31,6 +31,7 @@
                     android:orientation="horizontal"
                     android:layout_margin="5dp">
 
+<!--
                 <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/user_pic"
                         android:layout_width="45dp"
@@ -40,10 +41,11 @@
                         app:civ_border_width="1dp"
                         android:layout_alignParentLeft="true"
                         android:src="@drawable/baseline_person_white_18"/>
+-->
 
                 <TextView
                         android:id="@+id/post_timel"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/post_somthing_here"
                         android:padding="15dp"

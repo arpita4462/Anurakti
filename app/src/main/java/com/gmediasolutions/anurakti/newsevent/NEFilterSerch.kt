@@ -60,6 +60,7 @@ class NEFilterSerch(
                 holder.newsImage.visibility = View.VISIBLE
                 Glide.with(context).load(newsfilter.photos)
 //                    .override(2000,400)
+                    .placeholder(R.drawable.noimage)
                     .centerCrop()
                     .into(holder.newsImage)
             }

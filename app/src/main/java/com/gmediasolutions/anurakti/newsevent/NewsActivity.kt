@@ -18,12 +18,14 @@ import com.gmediasolutions.anurakti.PaginationScrollListener
 import com.gmediasolutions.anurakti.R
 import com.gmediasolutions.anurakti.adapter.BloggerRVAdapter
 import com.gmediasolutions.anurakti.adapter.NewsRVAdapter
+import com.gmediasolutions.anurakti.base.MainActivity
 import com.gmediasolutions.anurakti.model.BlogModel.BlogData
 import com.gmediasolutions.anurakti.model.BlogModel.BloggerModel
 import com.gmediasolutions.anurakti.model.NewsModel.GetAllNewsModel
 import com.gmediasolutions.anurakti.model.NewsModel.GetAllNewsModelData
 import com.gmediasolutions.anurakti.model.NewsModel.NewsModel
 import kotlinx.android.synthetic.main.activity_blog.*
+import kotlinx.android.synthetic.main.custom_toolbar.*
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Call
@@ -36,11 +38,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class NewsActivity : BaseActivity() {
 
-    var adapter: NewsRVAdapter?=null
-    var linearLayoutManager: LinearLayoutManager?=null
+    var adapter: NewsRVAdapter? = null
+    var linearLayoutManager: LinearLayoutManager? = null
 
-    var rv: RecyclerView?=null
-    var progressBar: ProgressBar?=null
+    var rv: RecyclerView? = null
+    var progressBar: ProgressBar? = null
     private var isLoading = false
     private var isLastPage = false
     // limiting to 5 for this tutorial, since total pages in actual API is very large. Feel free to modify.
@@ -60,14 +62,14 @@ class NewsActivity : BaseActivity() {
 
         linearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         rv!!.layoutManager = linearLayoutManager
-
+        setupToolbar()
         rv!!.itemAnimator = DefaultItemAnimator()
 
         rv!!.adapter = adapter
 
         rv!!.addOnScrollListener(object : PaginationScrollListener(linearLayoutManager!!) {
 
-           override val totalPageCount: Int
+            override val totalPageCount: Int
                 get() = TOTAL_PAGES
 
             override val isLastPage: Boolean
@@ -108,6 +110,23 @@ class NewsActivity : BaseActivity() {
 
     }
 
+    fun setupToolbar() {
+
+
+//      setup toolbar
+        if (my_toolbar != null) {
+            setSupportActionBar(my_toolbar)
+
+            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+            supportActionBar!!.setDisplayShowHomeEnabled(true)
+            my_toolbar.setNavigationOnClickListener(object : View.OnClickListener {
+                override fun onClick(v: View) {
+                    startActivity(Intent(applicationContext, MainActivity::class.java))
+                    finish()
+                }
+            })
+        }
+    }
 
     private fun loadFirstPage() {
         Log.d(TAG, "loadFirstPage: ")
@@ -140,9 +159,9 @@ class NewsActivity : BaseActivity() {
      */
     private fun fetchResults(response: Response<GetAllNewsModel>): List<NewsModel> {
         val topRatedBlogs = response.body()
-        var returnvalue:List<NewsModel> = ArrayList()
-        if (topRatedBlogs!=null){
-            returnvalue=topRatedBlogs!!.data!!.data!!
+        var returnvalue: List<NewsModel> = ArrayList()
+        if (topRatedBlogs != null) {
+            returnvalue = topRatedBlogs!!.data!!.data!!
         }
         return returnvalue
     }

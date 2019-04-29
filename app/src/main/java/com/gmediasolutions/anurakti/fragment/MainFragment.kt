@@ -60,7 +60,6 @@ class MainFragment : Fragment(), NetworkStateReceiver.NetworkStateReceiverListen
     private var item4Layout: LinearLayout? = null
     private var item5Layout: LinearLayout? = null
     private var item6Layout: LinearLayout? = null
-//    private var item7Layout: LinearLayout? = null
     private var progressBarBannerText: TextView? = null
     private var progressBarBanner: AVLoadingIndicatorView? = null
 

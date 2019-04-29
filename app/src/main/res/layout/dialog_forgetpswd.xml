@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:maxLength="30"
                 android:inputType="textEmailAddress"
-                android:hint="@string/hint_name" />
+                android:hint="@string/hint_email" />
     </android.support.design.widget.TextInputLayout>
     <!-- Login Button -->
 

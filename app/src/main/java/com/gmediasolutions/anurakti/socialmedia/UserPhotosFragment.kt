@@ -261,6 +261,7 @@ class UserPhotosFragment : Fragment(), NetworkStateReceiver.NetworkStateReceiver
 
             Glide.with(context!!)
                 .load(image)
+                .placeholder(R.drawable.noimage)
                 .centerCrop()
                 .into(itemHolder.imageView)
             itemHolder.rootView.setOnClickListener {
@@ -306,6 +307,7 @@ class UserPhotosFragment : Fragment(), NetworkStateReceiver.NetworkStateReceiver
             val image = list[position].pic
             Glide.with(context!!)
                 .load(image)
+                .placeholder(R.drawable.noimage)
                 .centerCrop()
                 .into(itemHolder.imageView)
             itemHolder.rootView.setOnClickListener {

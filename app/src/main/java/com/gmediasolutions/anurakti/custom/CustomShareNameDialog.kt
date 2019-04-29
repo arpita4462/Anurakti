@@ -2,6 +2,7 @@ package com.gmediasolutions.anurakti.custom
 
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.widget.Toast
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -16,10 +17,13 @@ import android.support.v7.widget.RecyclerView
 import com.gmediasolutions.anurakti.ApiInterface
 import com.gmediasolutions.anurakti.R
 import com.gmediasolutions.anurakti.adapter.ShareNameListAdapter
+import com.gmediasolutions.anurakti.model.ApiReturn
 import com.gmediasolutions.anurakti.model.UserSocialModel.GetFriendModel
 import com.gmediasolutions.anurakti.model.UserSocialModel.GetFriendModelData
 import com.gmediasolutions.anurakti.model.UserSocialModel.ShareRequest
+import com.gmediasolutions.anurakti.socialmedia.UserSocialActivity
 import kotlinx.android.synthetic.main.custom_likename.*
+import okhttp3.Interceptor
 
 
 /**
@@ -68,7 +72,7 @@ class CustomShareNameDialog(
         }
     }
 
-/*
+
     fun sharePost(sharecmmt: ShareRequest, timelineId: String?, user_token: String) {
         val requestBody = HashMap<String, ShareRequest>()
         requestBody.clear()
@@ -97,7 +101,7 @@ class CustomShareNameDialog(
             }
         })
     }
-*/
+
 
     private fun showfrndlist(user_id: String) {
 

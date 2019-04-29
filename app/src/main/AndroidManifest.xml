@@ -58,6 +58,7 @@
         <activity android:name=".helpsupport.FeeedbackActivity"/>
         <activity android:name=".helpsupport.ComplaintsActivity"/>
         <activity android:name=".vendor.GetAllVendorsActivity"/>
+        <activity android:name=".menuoptions.PrivacyPolicyActivity"/>
     </application>
 
 </manifest>
