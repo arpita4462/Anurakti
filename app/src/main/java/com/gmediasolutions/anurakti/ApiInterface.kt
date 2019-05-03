@@ -50,8 +50,12 @@ interface ApiInterface {
     fun login(@Body data: HashMap<String, LoginRequest>): Call<LoginReturn>
 
     @Headers("Content-Type: application/json")
-    @POST("/api/1.0/forgotPassword")
+    @POST("/api/1.0/sendOTP")
     fun forgotPassword(@Body data: HashMap<String, ForgetPassRequest>): Call<ApiReturn>
+
+     @Headers("Content-Type: application/json")
+    @POST("/api/1.0/resetPassword")
+    fun resetPassword(@Body data: HashMap<String, ResetPassRequest>): Call<ApiReturn>
 
     @GET("/api/1.0/banner/getBanners")
     fun getBanners(): Call<BannerModel>
@@ -72,9 +76,6 @@ interface ApiInterface {
 
     @GET("/api/1.0/user/{userId}")
     fun user(@Path("userId") userId: String): Call<UserModel>
-
-    @GET("/api/1.0/allUser")
-    fun allUser(): Call<AllUserModel>
 
 
     /*Timeline apis*/

@@ -222,6 +222,7 @@
     <string name="delete_msg">Do you want to Delete ?</string>
 
     <string name="ErrorField">Please Fill This Field</string>
+    <string name="con">Password and Confirm Password doesn\u0060t match</string>
     <string name="ErrorFieldLast">Last Name not valid</string>
     <string name="error_password">Password should be greater then 5 character</string>
     <string name="invalid_entry">Invalid Data</string>
@@ -260,6 +261,8 @@
     <string name="army">Army</string>
     <string name="civil">Civilian</string>
     <string name="hint_sub">Subject</string>
+    <string name="otp">OTP is sent on your register email-id</string>
+    <string name="hint_otp">Enter OTP</string>
 
 
     <string-array name="spinner_gender">
